@@ -1,0 +1,2692 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-font="serif" data-size="medium" data-pattern="none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden Workspace Pro</title>
+    <style>
+        /* ==========================================================================
+           DIGITAL GARDEN - ULTIMATE SAAS WORKSPACE (2500+ LINES)
+           ========================================================================== */
+        
+        /* --- CSS VARIABLES & THEMES --- */
+        :root {
+            /* Default Light Theme */
+            --bg-color: #fbfaf8; 
+            --bg-sidebar: #f4f3ef;
+            --bg-panel: #ffffff;
+            --bg-hover: #ebeae4;
+            --text-main: #2b2b2b; 
+            --text-muted: #767676;
+            --link-color: #5b8a72; 
+            --link-hover: #3d604e;
+            --border-light: #eae5dc;
+            --border-focus: #c2cdbc;
+            --selection-bg: #dceddf;
+            --btn-bg: #5b8a72;
+            --btn-text: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+            --graph-node: #5b8a72;
+            --graph-link: #d0d0d0;
+            --danger: #d9534f;
+            --warning: #f0ad4e;
+            --info: #5bc0de;
+            --kanban-bg: #f9f8f6;
+            --palette-bg: #ffffff;
+            --timer-bg: #f0eee8;
+            --tag-bg: #e2e0d8;
+            --chart-bar: #5b8a72;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a; 
+            --bg-sidebar: #121212;
+            --bg-panel: #222222;
+            --bg-hover: #2a2a2a;
+            --text-main: #e4e4e4; 
+            --text-muted: #999999;
+            --link-color: #7ab395; 
+            --link-hover: #9ad5b5;
+            --border-light: #333333;
+            --border-focus: #555555;
+            --selection-bg: #2d4538;
+            --btn-bg: #7ab395;
+            --btn-text: #1a1a1a;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.6);
+            --graph-node: #7ab395;
+            --graph-link: #444444;
+            --danger: #ff6b6b;
+            --warning: #f39c12;
+            --info: #3498db;
+            --kanban-bg: #1e1e1e;
+            --palette-bg: #2a2a2a;
+            --timer-bg: #333333;
+            --tag-bg: #3a3a3a;
+            --chart-bar: #7ab395;
+        }
+
+        [data-theme="sepia"] {
+            --bg-color: #f4ecd8; 
+            --bg-sidebar: #e9dec3;
+            --bg-panel: #fcf9f2;
+            --bg-hover: #dfd4b8;
+            --text-main: #433422; 
+            --text-muted: #8a7a63;
+            --link-color: #b56c42; 
+            --link-hover: #8f5331;
+            --border-light: #d8cdb4;
+            --border-focus: #bfae8e;
+            --selection-bg: #e6d3ba;
+            --btn-bg: #b56c42;
+            --btn-text: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(67, 52, 34, 0.08);
+            --shadow-md: 0 8px 24px rgba(67, 52, 34, 0.12);
+            --shadow-lg: 0 20px 40px rgba(67, 52, 34, 0.15);
+            --graph-node: #b56c42;
+            --graph-link: #d8cdb4;
+            --danger: #c0392b;
+            --warning: #d35400;
+            --info: #2980b9;
+            --kanban-bg: #f0e6cf;
+            --palette-bg: #fcf9f2;
+            --timer-bg: #e2d5ba;
+            --tag-bg: #dcd0b6;
+            --chart-bar: #b56c42;
+        }
+
+        [data-theme="midnight"] {
+            --bg-color: #0d1117; 
+            --bg-sidebar: #010409;
+            --bg-panel: #161b22;
+            --bg-hover: #21262d;
+            --text-main: #c9d1d9; 
+            --text-muted: #8b949e;
+            --link-color: #58a6ff; 
+            --link-hover: #79c0ff;
+            --border-light: #30363d;
+            --border-focus: #58a6ff;
+            --selection-bg: #1f3a5e;
+            --btn-bg: #58a6ff;
+            --btn-text: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.5);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.8);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.9);
+            --graph-node: #58a6ff;
+            --graph-link: #30363d;
+            --danger: #f85149;
+            --warning: #d29922;
+            --info: #3fb950;
+            --kanban-bg: #0d1117;
+            --palette-bg: #1c2128;
+            --timer-bg: #21262d;
+            --tag-bg: #21262d;
+            --chart-bar: #58a6ff;
+        }
+
+        [data-theme="nord"] {
+            --bg-color: #2e3440; 
+            --bg-sidebar: #242933;
+            --bg-panel: #3b4252;
+            --bg-hover: #434c5e;
+            --text-main: #d8dee9; 
+            --text-muted: #a3be8c; 
+            --link-color: #88c0d0; 
+            --link-hover: #81a1c1;
+            --border-light: #4c566a;
+            --border-focus: #88c0d0;
+            --selection-bg: #4c566a;
+            --btn-bg: #88c0d0;
+            --btn-text: #2e3440;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.7);
+            --graph-node: #88c0d0;
+            --graph-link: #4c566a;
+            --danger: #bf616a;
+            --warning: #ebcb8b;
+            --info: #5e81ac;
+            --kanban-bg: #2e3440;
+            --palette-bg: #3b4252;
+            --timer-bg: #434c5e;
+            --tag-bg: #4c566a;
+            --chart-bar: #88c0d0;
+        }
+
+        [data-theme="solarized"] {
+            --bg-color: #fdf6e3; 
+            --bg-sidebar: #eee8d5;
+            --bg-panel: #fdf6e3;
+            --bg-hover: #e5e0c8;
+            --text-main: #657b83; 
+            --text-muted: #93a1a1;
+            --link-color: #268bd2; 
+            --link-hover: #2aa198;
+            --border-light: #ccc8b1;
+            --border-focus: #268bd2;
+            --selection-bg: #eee8d5;
+            --btn-bg: #268bd2;
+            --btn-text: #fdf6e3;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+            --graph-node: #268bd2;
+            --graph-link: #ccc8b1;
+            --danger: #dc322f;
+            --warning: #b58900;
+            --info: #2aa198;
+            --kanban-bg: #eee8d5;
+            --palette-bg: #fdf6e3;
+            --timer-bg: #e5e0c8;
+            --tag-bg: #e5e0c8;
+            --chart-bar: #268bd2;
+        }
+
+        [data-theme="hacker"] {
+            --bg-color: #000000; 
+            --bg-sidebar: #050505;
+            --bg-panel: #0a0a0a;
+            --bg-hover: #111111;
+            --text-main: #00ff00; 
+            --text-muted: #008800;
+            --link-color: #00ff00; 
+            --link-hover: #ffffff;
+            --border-light: #003300;
+            --border-focus: #00ff00;
+            --selection-bg: #002200;
+            --btn-bg: #00aa00;
+            --btn-text: #000000;
+            --shadow-sm: 0 2px 8px rgba(0,255,0,0.1);
+            --shadow-md: 0 8px 24px rgba(0,255,0,0.15);
+            --shadow-lg: 0 20px 40px rgba(0,255,0,0.2);
+            --graph-node: #00ff00;
+            --graph-link: #004400;
+            --danger: #ff0000;
+            --warning: #ffff00;
+            --info: #00ffff;
+            --kanban-bg: #000000;
+            --palette-bg: #050505;
+            --timer-bg: #0a0a0a;
+            --tag-bg: #002200;
+            --chart-bar: #00ff00;
+        }
+
+        [data-theme="lavender"] {
+            --bg-color: #f5f3fa; 
+            --bg-sidebar: #eae6f3;
+            --bg-panel: #ffffff;
+            --bg-hover: #dfd8ed;
+            --text-main: #4a4453; 
+            --text-muted: #888098;
+            --link-color: #8c73c8; 
+            --link-hover: #6a52a3;
+            --border-light: #dcd6e8;
+            --border-focus: #8c73c8;
+            --selection-bg: #e6e0f5;
+            --btn-bg: #8c73c8;
+            --btn-text: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(140, 115, 200, 0.1);
+            --shadow-md: 0 8px 24px rgba(140, 115, 200, 0.15);
+            --shadow-lg: 0 20px 40px rgba(140, 115, 200, 0.2);
+            --graph-node: #8c73c8;
+            --graph-link: #dcd6e8;
+            --danger: #e06c75;
+            --warning: #d19a66;
+            --info: #56b6c2;
+            --kanban-bg: #f5f3fa;
+            --palette-bg: #ffffff;
+            --timer-bg: #eae6f3;
+            --tag-bg: #dfd8ed;
+            --chart-bar: #8c73c8;
+        }
+
+        /* Background Patterns */
+        [data-pattern="dots"] #main-content {
+            background-image: radial-gradient(var(--border-light) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        [data-pattern="grid"] #main-content {
+            background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        [data-pattern="lines"] #main-content {
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 29px, var(--border-light) 29px, var(--border-light) 30px);
+            background-attachment: local;
+        }
+
+        /* Typography Settings */
+        [data-font="serif"] { --font-family: 'Lora', Georgia, 'Times New Roman', serif; }
+        [data-font="sans"] { --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        [data-font="mono"] { --font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+
+        [data-size="small"] { --base-size: 14px; --title-size: 2.2rem; }
+        [data-size="medium"] { --base-size: 17px; --title-size: 2.8rem; }
+        [data-size="large"] { --base-size: 20px; --title-size: 3.5rem; }
+
+        ::selection { background: var(--selection-bg); color: var(--text-main); }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* --- GLOBAL LAYOUT --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family); 
+            font-size: var(--base-size);
+            line-height: 1.8;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .ui-font { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        button { font-family: inherit; }
+        input, textarea { font-family: inherit; }
+        
+        /* Utility Classes */
+        .hidden { display: none !important; }
+        .widget-hidden { display: none !important; }
+        .flex { display: flex; }
+        .flex-col { display: flex; flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 8px; }
+        .gap-4 { gap: 16px; }
+
+        /* --- SIDEBAR (LEFT) --- */
+        #nav-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            border-right: 1px solid var(--border-light);
+            background-color: var(--bg-sidebar);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.3s ease, width 0.3s ease, margin 0.3s ease;
+            z-index: 50;
+        }
+
+        .nav-header {
+            padding: 1.5rem 1.5rem 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-top-row { 
+            display: flex; justify-content: space-between; align-items: center; gap: 10px; 
+        }
+        
+        .nav-title {
+            font-size: 1rem; font-weight: 600; letter-spacing: 1px; color: var(--text-muted);
+            text-transform: uppercase; margin: 0; cursor: pointer;
+            display: flex; align-items: center; white-space: nowrap; flex-shrink: 1; overflow: hidden; text-overflow: ellipsis;
+        }
+
+        .icon-btn {
+            background: none; border: none; color: var(--text-muted); cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 6px; display: flex; align-items: center; justify-content: center; border-radius: 6px;
+        }
+        .icon-btn:hover { color: var(--link-color); background: var(--border-light); }
+        .icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+        /* Search Box */
+        .search-box {
+            display: flex; align-items: center; background: var(--bg-panel);
+            border: 1px solid var(--border-light); border-radius: 6px; padding: 6px 10px;
+            margin: 0;
+            cursor: text; transition: border-color 0.2s;
+        }
+        .search-box:focus-within { border-color: var(--link-color); }
+        .search-box input {
+            border: none; background: transparent; color: var(--text-main); outline: none;
+            width: 100%; font-size: 0.85rem; margin-left: 8px;
+        }
+
+        /* Fixed Button Sizing using Grid */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            padding: 0 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .action-btn {
+            width: 100%;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            background: var(--bg-panel); border: 1px solid var(--border-light);
+            color: var(--text-main); padding: 8px 0; font-size: 0.8rem; font-weight: 600;
+            border-radius: 6px; cursor: pointer; transition: all 0.2s; box-sizing: border-box;
+        }
+        .action-btn:hover { border-color: var(--link-color); color: var(--link-color); }
+
+        .view-toggles {
+            display: flex; gap: 4px; padding: 0.5rem 1.5rem; border-bottom: 1px solid var(--border-light);
+            background: var(--bg-panel); overflow-x: auto;
+        }
+        .view-btn {
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+            background: transparent; border: none; color: var(--text-muted); padding: 8px;
+            font-size: 0.8rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+        }
+        .view-btn:hover { background: var(--bg-hover); color: var(--text-main); }
+        .view-btn.active { background: var(--selection-bg); color: var(--link-color); }
+
+        .notes-list { flex-grow: 1; overflow-y: auto; padding: 0.5rem 0; list-style: none; margin: 0; }
+        .note-item {
+            padding: 0.8rem 1.5rem; cursor: pointer; transition: background 0.2s ease;
+            display: flex; flex-direction: column; border-left: 3px solid transparent;
+        }
+        .note-item:hover { background-color: var(--bg-hover); }
+        .note-item.active { background-color: var(--selection-bg); border-left-color: var(--link-color); }
+        
+        .note-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+        .note-item-title { font-size: 0.95rem; font-weight: bold; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .note-item-date { font-size: 0.7rem; color: var(--text-muted); }
+        .note-item-tags { font-size: 0.75rem; color: var(--link-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* --- WORKSPACE WRAPPER --- */
+        #workspace {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            transition: flex-direction 0.3s ease;
+            width: 100%;
+        }
+
+        #main-content {
+            flex-grow: 1; display: flex; flex-direction: column; position: relative;
+            background-color: transparent; height: 100%; overflow: hidden;
+        }
+
+        .view-container {
+            display: none; flex-direction: column; height: 100%; width: 100%;
+            animation: fadeIn 0.3s ease; overflow: hidden;
+        }
+        .view-container.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- EDITOR VIEW --- */
+        .editor-toolbar {
+            display: flex; padding: 10px 2rem; background: transparent;
+            border-bottom: 1px solid var(--border-light); gap: 15px; align-items: center; z-index: 10;
+        }
+        .toolbar-group { display: flex; gap: 4px; border-right: 1px solid var(--border-light); padding-right: 15px; }
+        .toolbar-group:last-child { border: none; }
+        .toolbar-btn {
+            background: none; border: none; color: var(--text-muted); padding: 8px; border-radius: 4px;
+            cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .toolbar-btn:hover { background: var(--border-light); color: var(--text-main); }
+        .toolbar-btn.active { background: var(--selection-bg); color: var(--link-color); }
+        .toolbar-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+        .editor-scroll-area { flex-grow: 1; overflow-y: auto; padding: 3rem 0 8rem 0; display: flex; justify-content: center; scroll-behavior: smooth; }
+        .editor-wrapper { max-width: 75ch; width: 100%; padding: 0 2rem; display: flex; flex-direction: column; }
+
+        .editor-meta { display: flex; gap: 10px; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
+        .status-toggle {
+            display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-main);
+            background: var(--bg-panel); padding: 6px 14px; border-radius: 20px; cursor: pointer;
+            border: 1px solid var(--border-light); transition: all 0.2s ease; font-weight: 500;
+        }
+        .status-toggle:hover { border-color: var(--link-color); background: var(--selection-bg); }
+
+        .tag-input-container {
+            display: flex; align-items: center; background: var(--bg-panel); border: 1px solid var(--border-light);
+            border-radius: 20px; padding: 4px 12px; font-size: 0.85rem; flex-grow: 1; max-width: 400px;
+        }
+        .tag-input-container input {
+            border: none; background: transparent; color: var(--text-main); outline: none; width: 100%; margin-left: 6px; font-family: inherit;
+        }
+
+        .title-input {
+            width: 100%; font-size: var(--title-size); font-weight: bold; line-height: 1.2; letter-spacing: -0.5px;
+            color: var(--text-main); border: none; background: transparent; font-family: inherit; padding: 0;
+            margin-bottom: 1.5rem; outline: none; resize: none; overflow: hidden;
+        }
+        .title-input::placeholder { color: var(--border-focus); }
+
+        .content-input { width: 100%; min-height: 50vh; outline: none; color: var(--text-main); padding-bottom: 10vh; white-space: pre-wrap;}
+        .content-input[placeholder]:empty:before { content: attr(placeholder); color: var(--text-muted); cursor: text; }
+        
+        /* Markdown Preview Styles */
+        .markdown-preview { width: 100%; min-height: 50vh; color: var(--text-main); display: none; padding-bottom: 10vh;}
+        .markdown-preview.active { display: block; }
+
+        /* Rich Text / Markdown Rendering Styles */
+        .content-input h1, .content-input h2, .content-input h3, .markdown-preview h1, .markdown-preview h2, .markdown-preview h3 { margin-top: 2rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.3;}
+        .content-input h1, .markdown-preview h1 { font-size: 2.2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;}
+        .content-input h2, .markdown-preview h2 { font-size: 1.8rem; }
+        .content-input h3, .markdown-preview h3 { font-size: 1.4rem; }
+        .content-input p, .markdown-preview p { margin-bottom: 1.5em; }
+        .content-input blockquote, .markdown-preview blockquote { border-left: 4px solid var(--link-color); margin: 1.5rem 0; padding-left: 1.5rem; font-style: italic; color: var(--text-muted); background: var(--bg-panel); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0;}
+        .content-input a, .markdown-preview a { color: var(--link-color); text-decoration: none; border-bottom: 1px solid var(--link-color); transition: all 0.2s; cursor: pointer; }
+        .content-input a:hover, .markdown-preview a:hover { background: var(--selection-bg); }
+        .content-input ul, .content-input ol, .markdown-preview ul, .markdown-preview ol { padding-left: 2rem; margin-bottom: 1.5rem; }
+        .content-input li, .markdown-preview li { margin-bottom: 0.5rem; }
+        .content-input pre, .markdown-preview pre { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em;}
+        .content-input code, .markdown-preview code { background: var(--border-light); padding: 2px 6px; border-radius: 4px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em; color: var(--danger);}
+        
+        /* Task Lists */
+        .task-list { list-style-type: none !important; padding-left: 0 !important; }
+        .task-list input[type="checkbox"] { margin-right: 10px; cursor: pointer; }
+        
+        /* Tables */
+        .markdown-preview table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9em;}
+        .markdown-preview th, .markdown-preview td { border: 1px solid var(--border-light); padding: 10px; text-align: left; }
+        .markdown-preview th { background: var(--bg-panel); font-weight: bold; }
+
+        /* Wiki-Links */
+        .wiki-link { color: var(--link-color); font-weight: bold; text-decoration: none; cursor: pointer; background: var(--selection-bg); padding: 0 4px; border-radius: 4px;}
+        .wiki-link:hover { text-decoration: underline; }
+
+        /* --- KANBAN VIEW --- */
+        #kanban-view { padding: 2rem; background: var(--kanban-bg); overflow-x: auto; height: 100%; box-sizing: border-box;}
+        .kanban-board { display: flex; gap: 2rem; height: 100%; min-width: 900px; align-items: flex-start;}
+        .kanban-col { flex: 1; min-width: 300px; display: flex; flex-direction: column; background: var(--bg-color); border-radius: 12px; border: 1px solid var(--border-light); max-height: 100%; }
+        .kanban-col-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; font-weight: bold; background: var(--bg-panel); border-radius: 12px 12px 0 0; }
+        .kanban-col-actions { display: flex; gap: 5px; }
+        .kanban-col-actions button { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 0.8rem;}
+        .kanban-col-actions button:hover { color: var(--danger); }
+        .kanban-count { background: var(--border-light); padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-muted); }
+        .kanban-cards { flex-grow: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 1rem; min-height: 150px; }
+        
+        .k-card {
+            background: var(--bg-panel); border: 1px solid var(--border-light); border-radius: 8px; padding: 1rem;
+            box-shadow: var(--shadow-sm); cursor: grab; transition: transform 0.2s, box-shadow 0.2s;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .k-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--link-color); }
+        .k-card:active { cursor: grabbing; }
+        .k-card.dragging { opacity: 0.5; }
+        .k-card-title { font-weight: bold; font-size: 1rem; color: var(--text-main); }
+        .k-card-excerpt { font-size: 0.85rem; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .k-card-meta { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 8px; }
+
+        .add-col-btn { min-width: 300px; display: flex; align-items: center; justify-content: center; background: transparent; border: 2px dashed var(--border-light); color: var(--text-muted); border-radius: 12px; cursor: pointer; padding: 2rem; font-weight: bold; transition: 0.2s;}
+        .add-col-btn:hover { border-color: var(--link-color); color: var(--link-color); background: var(--bg-panel);}
+
+        /* --- CALENDAR VIEW --- */
+        #calendar-view { padding: 2rem; background: var(--bg-color); overflow-y: auto; height: 100%; box-sizing: border-box;}
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; max-width: 1000px; margin-left: auto; margin-right: auto;}
+        .cal-nav-btn { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; color: var(--text-main); transition: 0.2s; }
+        .cal-nav-btn:hover { background: var(--link-color); color: #fff; border-color: var(--link-color); }
+        .calendar-title { font-size: 1.5rem; font-weight: bold; }
+        
+        .calendar-grid {
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; max-width: 1000px; margin: 0 auto;
+        }
+        .cal-day-header { text-align: center; font-weight: bold; color: var(--text-muted); padding-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;}
+        .cal-day {
+            background: var(--bg-panel); border: 1px solid var(--border-light); border-radius: 8px; min-height: 120px;
+            padding: 10px; display: flex; flex-direction: column; gap: 5px; transition: 0.2s;
+        }
+        .cal-day.empty { background: transparent; border: none; }
+        .cal-day.today { border-color: var(--link-color); box-shadow: 0 0 0 1px var(--link-color); }
+        .cal-day:hover:not(.empty) { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
+        .cal-date { font-weight: bold; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 5px; }
+        .cal-day.today .cal-date { color: var(--link-color); }
+        
+        .cal-note {
+            background: var(--selection-bg); color: var(--link-hover); font-size: 0.75rem; padding: 4px 8px;
+            border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer;
+            border: 1px solid transparent; transition: 0.2s; display: flex; justify-content: space-between; align-items: center;
+        }
+        .cal-note:hover { border-color: var(--link-color); transform: translateX(2px); }
+
+        /* --- ANALYTICS VIEW --- */
+        #analytics-view { padding: 2rem; background: var(--bg-color); overflow-y: auto; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;}
+        .analytics-container { max-width: 900px; width: 100%; }
+        .analytics-header { font-size: 2rem; font-weight: bold; margin-bottom: 2rem; color: var(--text-main); }
+        .analytics-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 3rem; }
+        .a-card { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 20px; border-radius: 12px; text-align: center; box-shadow: var(--shadow-sm);}
+        .a-val { font-size: 3rem; font-weight: 900; color: var(--link-color); line-height: 1; margin-bottom: 10px; }
+        .a-lbl { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        
+        .chart-container { background: var(--bg-panel); border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); }
+        .chart-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--text-main); }
+        .svg-chart { width: 100%; height: 300px; }
+        .bar { fill: var(--chart-bar); transition: opacity 0.2s, y 0.5s, height 0.5s; cursor: pointer; }
+        .bar:hover { opacity: 0.8; }
+        .axis-line { stroke: var(--border-light); stroke-width: 2; }
+        .axis-text { fill: var(--text-muted); font-size: 12px; font-family: sans-serif; text-anchor: middle;}
+
+        /* --- TRASH VIEW --- */
+        #trash-view { padding: 2rem; background: var(--bg-color); overflow-y: auto; height: 100%; box-sizing: border-box;}
+        .trash-container { max-width: 900px; margin: 0 auto; }
+        .trash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .trash-title { font-size: 2rem; font-weight: bold; color: var(--danger); }
+        .trash-list { display: flex; flex-direction: column; gap: 15px; }
+        .trash-item { background: var(--bg-panel); border: 1px solid var(--border-light); border-radius: 8px; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm);}
+        .trash-info { display: flex; flex-direction: column; gap: 4px; }
+        .trash-item-title { font-weight: bold; font-size: 1.1rem; }
+        .trash-item-meta { font-size: 0.8rem; color: var(--text-muted); }
+        .trash-actions { display: flex; gap: 10px; }
+
+        /* --- INFO PANEL (RIGHT) --- */
+        #info-panel {
+            width: 320px; flex-shrink: 0; border-left: 1px solid var(--border-light); background-color: var(--bg-sidebar);
+            display: flex; flex-direction: column; height: 100%; transition: all 0.3s ease; z-index: 40;
+        }
+        
+        .info-scroll { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; }
+        .panel-section { padding: 1.5rem; border-bottom: 1px solid var(--border-light); }
+        .panel-title { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;}
+        
+        /* Stats Widget */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .stat-box { background: var(--bg-panel); padding: 12px 10px; border-radius: 8px; border: 1px solid var(--border-light); text-align: center; }
+        .stat-num { font-size: 1.4rem; font-weight: bold; color: var(--link-color); line-height: 1; margin-bottom: 4px;}
+        .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;}
+
+        /* Goal Widget */
+        .goal-bar-bg { height: 6px; background: var(--border-light); border-radius: 3px; overflow: hidden; margin-top: 5px;}
+        .goal-bar-fill { height: 100%; width: 0%; background: var(--link-color); transition: width 0.3s ease; }
+
+        /* Pomodoro Timer */
+        .pomodoro-container { background: var(--timer-bg); border-radius: 12px; padding: 1.5rem; text-align: center; border: 1px solid var(--border-light); position: relative; overflow: hidden;}
+        .timer-display { font-size: 3rem; font-weight: 900; font-family: 'SFMono-Regular', monospace; color: var(--text-main); margin: 10px 0; line-height: 1; letter-spacing: -2px;}
+        .timer-status { font-size: 0.8rem; font-weight: bold; text-transform: uppercase; color: var(--link-color); letter-spacing: 2px;}
+        .timer-controls { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        .timer-btn { background: var(--bg-panel); border: 1px solid var(--border-light); color: var(--text-main); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: 0.2s;}
+        .timer-btn:hover { border-color: var(--link-color); color: var(--link-color); }
+        .timer-btn.active { background: var(--link-color); color: white; border-color: var(--link-color); }
+        .timer-progress { position: absolute; bottom: 0; left: 0; height: 4px; background: var(--link-color); width: 0%; transition: width 1s linear;}
+
+        /* Ambient Audio */
+        .audio-controls { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;}
+        .audio-btn { flex: 1; min-width: 60px; display: flex; flex-direction: column; align-items: center; gap: 5px; background: var(--bg-panel); border: 1px solid var(--border-light); padding: 8px; border-radius: 8px; cursor: pointer; transition: 0.2s; color: var(--text-muted); font-size: 0.7rem; font-weight: bold;}
+        .audio-btn:hover { border-color: var(--link-color); color: var(--link-color); }
+        .audio-btn.playing { background: var(--selection-bg); border-color: var(--link-color); color: var(--link-hover); }
+        .audio-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* Tags Widget */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+        .tag-badge { background: var(--tag-bg); color: var(--text-main); font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: background 0.2s; border: 1px solid transparent;}
+        .tag-badge:hover { border-color: var(--link-color); background: var(--selection-bg); color: var(--link-color);}
+
+        /* Table of Contents */
+        .toc-list { list-style: none; padding: 0; margin: 0; font-size: 0.85rem; }
+        .toc-list li { margin-bottom: 6px; }
+        .toc-list a { color: var(--text-main); text-decoration: none; display: block; padding: 4px 8px; border-radius: 4px; transition: 0.2s; border-left: 2px solid transparent;}
+        .toc-list a:hover { background: var(--border-light); color: var(--link-color); }
+        .toc-h1 a { font-weight: bold; }
+        .toc-h2 a { padding-left: 16px; font-size: 0.8rem; color: var(--text-muted); }
+        .toc-h3 a { padding-left: 24px; font-size: 0.75rem; color: var(--text-muted); border-left: 1px dashed var(--border-light);}
+
+        /* Network Graph Canvas */
+        #graph-container { width: 100%; height: 200px; background: var(--bg-panel); border-radius: 8px; border: 1px solid var(--border-light); overflow: hidden; position: relative; cursor: grab; }
+        #graph-container:active { cursor: grabbing; }
+        #network-canvas { width: 100%; height: 100%; display: block; }
+
+        /* --- FULLSCREEN / FOCUS MODE ARCHITECTURE --- */
+        .focus-header { display: none; }
+        
+        body.focus-mode .focus-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 2rem; border-right: 1px solid var(--border-light);
+            min-width: max-content; flex-shrink: 0; gap: 15px; height: auto; min-height: 60px;
+        }
+
+        body.focus-mode #nav-sidebar {
+            display: none !important;
+        }
+
+        body.focus-mode #workspace { flex-direction: column; }
+
+        body.focus-mode #info-panel {
+            width: 100%; height: auto; min-height: 60px; flex-direction: row; border-left: none; border-bottom: 1px solid var(--border-light);
+            background: var(--bg-sidebar); overflow-x: auto; overflow-y: hidden; order: -1; align-items: stretch;
+        }
+
+        body.focus-mode .info-scroll { flex-direction: row; align-items: center; padding: 10px 2rem; gap: 1.5rem; width: max-content; overflow: visible; min-height: 60px;}
+        body.focus-mode .panel-section { padding: 0; border: none; width: auto; flex-shrink: 0; display: flex; align-items: center; gap: 15px; }
+
+        body.focus-mode .panel-title,
+        body.focus-mode #sect-toc,
+        body.focus-mode #sect-graph,
+        body.focus-mode #sect-tags,
+        body.focus-mode #sect-actions { display: none !important; }
+
+        body.focus-mode .stats-grid { display: flex; gap: 15px; }
+        body.focus-mode .stat-box { padding: 4px 12px; display: flex; align-items: center; gap: 8px; background: transparent; border: none; }
+        body.focus-mode .stat-num { font-size: 1.1rem; margin: 0; }
+        body.focus-mode .stat-lbl { font-size: 0.7rem; }
+        
+        body.focus-mode #sect-goal { min-width: 200px; display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 4px; padding-right: 15px; border-right: 1px solid var(--border-light);}
+        
+        body.focus-mode .pomodoro-container { padding: 0; display: flex; align-items: center; gap: 15px; border: none; background: transparent; }
+        body.focus-mode .timer-display { font-size: 1.4rem; margin: 0; }
+        body.focus-mode .timer-controls { margin: 0; }
+        body.focus-mode .timer-progress { display: none; }
+        
+        body.focus-mode .audio-controls { margin: 0; flex-direction: row; gap: 8px;}
+        body.focus-mode .audio-btn { flex-direction: row; padding: 6px 12px; gap: 8px; }
+        body.focus-mode .audio-btn svg { width: 16px; height: 16px; }
+
+        /* --- COMMAND PALETTE MODAL --- */
+        #command-palette {
+            position: fixed; top: 15vh; left: 50%; transform: translateX(-50%) scale(0.95); width: 100%; max-width: 600px;
+            background: var(--palette-bg); border-radius: 12px; box-shadow: var(--shadow-lg); z-index: 2000;
+            display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border-light); overflow: hidden;
+        }
+        #command-palette.active { opacity: 1; pointer-events: auto; transform: translateX(-50%) scale(1); }
+        
+        .cp-search { display: flex; align-items: center; padding: 15px 20px; border-bottom: 1px solid var(--border-light); background: transparent;}
+        .cp-search svg { width: 20px; height: 20px; fill: var(--text-muted); margin-right: 15px; }
+        .cp-search input { width: 100%; border: none; background: transparent; font-size: 1.2rem; color: var(--text-main); outline: none; font-family: -apple-system, sans-serif;}
+        
+        .cp-results { max-height: 350px; overflow-y: auto; padding: 10px 0; }
+        .cp-group-title { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); padding: 5px 20px; font-weight: bold; letter-spacing: 1px; margin-top: 5px;}
+        .cp-item { display: flex; align-items: center; padding: 10px 20px; cursor: pointer; color: var(--text-main); font-size: 0.95rem; gap: 15px; border-left: 3px solid transparent;}
+        .cp-item.selected, .cp-item:hover { background: var(--selection-bg); border-left-color: var(--link-color); }
+        .cp-item-icon { width: 16px; height: 16px; fill: var(--text-muted); display: flex; align-items: center; justify-content: center;}
+        .cp-item.selected .cp-item-icon, .cp-item:hover .cp-item-icon { fill: var(--link-color); }
+        .cp-item-shortcut { margin-left: auto; font-size: 0.7rem; background: var(--border-light); padding: 2px 6px; border-radius: 4px; color: var(--text-muted); font-family: 'SFMono-Regular', monospace;}
+        .cp-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(2px); z-index: 1999; display: none; opacity: 0; transition: opacity 0.2s;}
+        .cp-overlay.active { display: block; opacity: 1; }
+
+        /* --- MODALS (SETTINGS, TEMPLATES, VERSIONS) --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            display: none; justify-content: center; align-items: center; z-index: 1500; opacity: 0; transition: opacity 0.2s;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: var(--bg-panel); width: 100%; max-width: 600px; border-radius: 12px; box-shadow: var(--shadow-lg);
+            padding: 2rem; color: var(--text-main); border: 1px solid var(--border-light);
+            transform: translateY(20px); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 85vh; overflow-y: auto;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .modal-header h2 { margin: 0; font-size: 1.5rem; font-family: -apple-system, sans-serif; }
+        .close-modal { background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+
+        .settings-group { margin-bottom: 1.5rem; }
+        .settings-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; color: var(--text-muted); text-transform: uppercase;}
+        .settings-options { display: flex; gap: 10px; flex-wrap: wrap;}
+        
+        .option-btn {
+            padding: 8px 16px; border: 1px solid var(--border-light); background: var(--bg-color);
+            color: var(--text-main); border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; font-weight: 500;
+        }
+        .option-btn:hover { border-color: var(--text-muted); }
+        .option-btn.active { background: var(--link-color); color: #fff; border-color: var(--link-color); }
+
+        .modal-actions { margin-top: 2rem; display: flex; gap: 10px; justify-content: flex-end; border-top: 1px solid var(--border-light); padding-top: 1.5rem;}
+        .btn-primary { background: var(--btn-bg); color: var(--btn-text); border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: opacity 0.2s;}
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-danger { background: var(--danger); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+
+        /* Version History List */
+        .version-list { display: flex; flex-direction: column; gap: 10px; }
+        .version-card { padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; background: var(--bg-color);}
+        .v-info { display: flex; flex-direction: column; }
+        .v-date { font-weight: bold; font-size: 0.95rem; }
+        .v-meta { font-size: 0.8rem; color: var(--text-muted); }
+        .v-restore { background: var(--bg-panel); border: 1px solid var(--border-light); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: bold; color: var(--link-color);}
+        .v-restore:hover { background: var(--link-color); color: #fff; }
+
+        /* Templates List */
+        .template-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .template-card { border: 1px solid var(--border-light); padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; background: var(--bg-color);}
+        .template-card:hover { border-color: var(--link-color); box-shadow: var(--shadow-sm); transform: translateY(-2px);}
+        .template-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 5px; color: var(--link-color);}
+        .template-desc { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* --- RESPONSIVE MOBILE FIXES --- */
+        @media (max-width: 1024px) {
+            #info-panel { 
+                position: absolute; right: 0; top: 0; bottom: 0; height: 100% !important; width: 320px; 
+                z-index: 60; box-shadow: var(--shadow-lg); transform: translateX(100%);
+                flex-direction: column !important; border-left: 1px solid var(--border-light) !important;
+                border-bottom: none !important;
+            }
+            body.show-info #info-panel { transform: translateX(0); }
+            body.focus-mode #workspace { flex-direction: row; } 
+            body.focus-mode .info-scroll { flex-direction: column; align-items: stretch; padding: 0; overflow-y: auto; overflow-x: hidden; }
+            body.focus-mode .panel-section { width: 100%; border-right: none; border-bottom: 1px solid var(--border-light); padding: 1.5rem; flex-direction: column; align-items: stretch; gap: 0;}
+            body.focus-mode .panel-title { display: flex !important; }
+        }
+        @media (max-width: 768px) {
+            #nav-sidebar { position: absolute; left: 0; height: 100%; transform: translateX(-100%); z-index: 60; box-shadow: var(--shadow-lg);}
+            body.show-nav #nav-sidebar { transform: translateX(0); }
+            .editor-wrapper { padding: 0 1rem; }
+            .editor-toolbar { padding: 10px 1rem; overflow-x: auto;}
+            .title-input { font-size: 2.2rem; }
+            .template-list { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body class="ui-font">
+
+    <!-- COMMAND PALETTE OVERLAY -->
+    <div class="cp-overlay" id="cp-overlay"></div>
+    <div id="command-palette">
+        <div class="cp-search">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="cp-input" placeholder="Search garden or type a command..." autocomplete="off">
+        </div>
+        <div class="cp-results" id="cp-results">
+            <!-- Results injected here -->
+        </div>
+    </div>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav id="nav-sidebar">
+        <div class="nav-header">
+            <div class="nav-top-row">
+                <h1 class="nav-title" onclick="openCommandPalette()">DigitalGarden <span style="font-size: 0.6rem; background: var(--border-light); padding: 2px 4px; border-radius: 4px; margin-left: 4px; color: var(--text-main);">⌘K</span></h1>
+                <div style="display: flex; gap: 5px; flex-shrink: 0; align-items: center;">
+                    <button class="icon-btn" onclick="toggleSettings()" title="Settings">
+                        <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+                    </button>
+                    <button class="icon-btn" onclick="toggleFocusMode()" title="Focus Mode">
+                        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="search-box">
+                <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:var(--text-muted); flex-shrink:0;"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+            </div>
+
+            <!-- Fixed identical sizing via CSS Grid -->
+            <div class="action-buttons">
+                <button class="action-btn" onclick="createNewNote()">
+                    <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> New Seed
+                </button>
+                <button class="action-btn" onclick="generateDailyPrompt()">
+                    <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg> Daily
+                </button>
+            </div>
+        </div>
+        
+        <div class="view-toggles">
+            <button class="view-btn active" id="tab-editor" onclick="switchView('editor')">
+                <svg viewBox="0 0 24 24" style="width:14px;height:14px; fill:currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </button>
+            <button class="view-btn" id="tab-kanban" onclick="switchView('kanban')">
+                <svg viewBox="0 0 24 24" style="width:14px;height:14px; fill:currentColor;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7V7h2v10zm4 0h-2V7h2v10zm4 0h-2V7h2v10z"/></svg>
+            </button>
+            <button class="view-btn" id="tab-calendar" onclick="switchView('calendar')">
+                <svg viewBox="0 0 24 24" style="width:14px;height:14px; fill:currentColor;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+            </button>
+            <button class="view-btn" id="tab-analytics" onclick="switchView('analytics')">
+                <svg viewBox="0 0 24 24" style="width:14px;height:14px; fill:currentColor;"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </button>
+            <button class="view-btn" id="tab-trash" onclick="switchView('trash')">
+                <svg viewBox="0 0 24 24" style="width:14px;height:14px; fill:currentColor;"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+            </button>
+        </div>
+
+        <ul class="notes-list" id="notes-list">
+            <!-- Notes injected here -->
+        </ul>
+    </nav>
+
+    <!-- WORKSPACE WRAPPER -->
+    <div id="workspace">
+        
+        <!-- MAIN CONTENT AREA -->
+        <main id="main-content">
+            
+            <!-- EDITOR VIEW -->
+            <div id="view-editor" class="view-container active">
+                <div class="editor-toolbar ui-font">
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" onclick="formatText('bold')" title="Bold (Cmd+B)"><svg viewBox="0 0 24 24"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/></svg></button>
+                        <button class="toolbar-btn" onclick="formatText('italic')" title="Italic (Cmd+I)"><svg viewBox="0 0 24 24"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/></svg></button>
+                        <button class="toolbar-btn" onclick="formatText('underline')" title="Underline (Cmd+U)"><svg viewBox="0 0 24 24"><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z"/></svg></button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" onclick="formatText('formatBlock', 'H1')" title="Heading 1"><strong style="font-size: 14px;">H1</strong></button>
+                        <button class="toolbar-btn" onclick="formatText('formatBlock', 'H2')" title="Heading 2"><strong style="font-size: 12px;">H2</strong></button>
+                        <button class="toolbar-btn" onclick="formatText('formatBlock', 'H3')" title="Heading 3"><strong style="font-size: 10px;">H3</strong></button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" onclick="formatText('insertUnorderedList')" title="Bullet List"><svg viewBox="0 0 24 24"><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/></svg></button>
+                        <button class="toolbar-btn" onclick="formatText('insertOrderedList')" title="Numbered List"><svg viewBox="0 0 24 24"><path d="M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z"/></svg></button>
+                        <button class="toolbar-btn" onclick="formatText('formatBlock', 'BLOCKQUOTE')" title="Quote"><svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></button>
+                        <button class="toolbar-btn" onclick="insertLink()" title="Link"><svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" id="btn-md-toggle" onclick="toggleMarkdown()" title="Toggle Markdown Mode">
+                            <svg viewBox="0 0 24 24"><path d="M20.56 18H3.44C2.65 18 2 17.37 2 16.59V7.41C2 6.63 2.65 6 3.44 6h17.12c.79 0 1.44.63 1.44 1.41v9.18c0 .78-.65 1.41-1.44 1.41zM6.81 15.19v-4.14L8.62 13.5l1.81-2.45v4.14h1.75V8.81h-2.12L8.62 11l-1.44-2.19H5.06v6.38h1.75zM17.5 15.19l3.19-4.19h-2.19V8.81h-2v2.19h-2.19l3.19 4.19z"/></svg>
+                        </button>
+                        <button class="toolbar-btn" onclick="toggleHistoryModal()" title="Version History">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        </button>
+                        <button class="toolbar-btn" onclick="toggleTemplatesModal()" title="Templates">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        </button>
+                    </div>
+                    
+                    <div style="flex-grow: 1;"></div>
+                    
+                    <!-- Mobile Toggles -->
+                    <button class="toolbar-btn" style="display:none;" id="mob-nav-btn" onclick="document.body.classList.toggle('show-nav')">
+                        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                    </button>
+                    <button class="toolbar-btn" style="display:none;" id="mob-info-btn" onclick="document.body.classList.toggle('show-info')">
+                        <svg viewBox="0 0 24 24"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/></svg>
+                    </button>
+                    
+                    <span id="save-status" style="font-size: 0.75rem; color: var(--text-muted);">Saved</span>
+                </div>
+
+                <div class="editor-scroll-area">
+                    <div class="editor-wrapper" id="editor-wrapper">
+                        <div class="editor-meta ui-font">
+                            <button class="status-toggle" id="status-btn" onclick="cycleStatus()">🌱 Seedling</button>
+                            <div class="tag-input-container">
+                                <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:var(--text-muted);"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.41l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.41zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+                                <input type="text" id="note-tags" placeholder="Add tags (comma separated)..." oninput="scheduleSave()">
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;" id="note-date"></div>
+                        </div>
+
+                        <textarea class="title-input" id="note-title" placeholder="Give your thought a title..." rows="1"></textarea>
+                        
+                        <!-- HTML Rich Editor -->
+                        <div class="content-input" id="note-content" contenteditable="true" placeholder="Start cultivating your note here..."></div>
+                        
+                        <!-- Markdown Preview -->
+                        <div class="markdown-preview" id="md-preview"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KANBAN VIEW -->
+            <div id="view-kanban" class="view-container ui-font">
+                <div id="kanban-view">
+                    <div class="kanban-board" id="kanban-board">
+                        <!-- Dynamic Columns injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- CALENDAR VIEW -->
+            <div id="view-calendar" class="view-container ui-font">
+                <div id="calendar-view">
+                    <div class="calendar-header">
+                        <button class="cal-nav-btn" onclick="changeMonth(-1)">Previous</button>
+                        <div class="calendar-title" id="cal-month-year">Month Year</div>
+                        <button class="cal-nav-btn" onclick="changeMonth(1)">Next</button>
+                    </div>
+                    <div class="calendar-grid" id="cal-grid">
+                        <!-- Days injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANALYTICS VIEW -->
+            <div id="view-analytics" class="view-container ui-font">
+                <div id="analytics-view">
+                    <div class="analytics-container">
+                        <div class="analytics-header">Garden Analytics</div>
+                        
+                        <div class="analytics-cards">
+                            <div class="a-card">
+                                <div class="a-val" id="a-tot-notes">0</div>
+                                <div class="a-lbl">Total Notes</div>
+                            </div>
+                            <div class="a-card">
+                                <div class="a-val" id="a-tot-words">0</div>
+                                <div class="a-lbl">Total Words</div>
+                            </div>
+                            <div class="a-card">
+                                <div class="a-val" id="a-tot-tags">0</div>
+                                <div class="a-lbl">Unique Tags</div>
+                            </div>
+                            <div class="a-card">
+                                <div class="a-val" id="a-streak">0</div>
+                                <div class="a-lbl">Day Streak</div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <div class="chart-title">Activity (Last 14 Days)</div>
+                            <svg class="svg-chart" id="activity-chart" viewBox="0 0 800 250">
+                                <!-- Chart generated via JS -->
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRASH VIEW -->
+            <div id="view-trash" class="view-container ui-font">
+                <div id="trash-view">
+                    <div class="trash-container">
+                        <div class="trash-header">
+                            <div class="trash-title">Recycle Bin</div>
+                            <button class="btn-danger" onclick="emptyTrash()">Empty Bin</button>
+                        </div>
+                        <div class="trash-list" id="trash-list">
+                            <!-- Trash items injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- INFO PANEL (RIGHT) & HORIZONTAL TOP BAR IN FOCUS MODE -->
+        <aside id="info-panel" class="ui-font">
+            <div class="focus-header">
+                <h1 class="nav-title" onclick="openCommandPalette()">Digital Garden <span style="font-size: 0.6rem; background: var(--border-light); padding: 2px 4px; border-radius: 4px; margin-left: 4px; color: var(--text-main);">⌘K</span></h1>
+                <div style="display: flex; gap: 5px; flex-shrink: 0; align-items: center;">
+                    <button class="icon-btn" onclick="toggleSettings()" title="Settings">
+                        <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+                    </button>
+                    <button class="icon-btn" onclick="toggleFocusMode()" title="Exit Focus Mode">
+                        <svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="info-scroll">
+                
+                <!-- Session Goal Tracker -->
+                <div class="panel-section widget" id="sect-goal">
+                    <div class="panel-title">Session Goal</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; margin-bottom:5px;">
+                        <span id="goal-progress-text" style="color:var(--text-main); font-weight:bold;">0 / 500 words</span>
+                        <button style="background:transparent; border:none; cursor:pointer; color:var(--link-color); font-size:0.75rem; font-weight:bold; padding:0;" onclick="editSessionGoal()">Edit</button>
+                    </div>
+                    <div class="goal-bar-bg">
+                        <div id="goal-bar-fill" class="goal-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Timer Section -->
+                <div class="panel-section widget" id="sect-pomodoro">
+                    <div class="panel-title">Pomodoro Focus</div>
+                    <div class="pomodoro-container">
+                        <div class="timer-status" id="timer-status">WORK</div>
+                        <div class="timer-display" id="timer-display">25:00</div>
+                        <div class="timer-controls">
+                            <button class="timer-btn" id="btn-timer-toggle" onclick="toggleTimer()">Start</button>
+                            <button class="timer-btn" onclick="resetTimer()">Reset</button>
+                        </div>
+                        <div class="timer-progress" id="timer-progress"></div>
+                    </div>
+                </div>
+
+                <!-- Ambient Audio -->
+                <div class="panel-section widget" id="sect-audio">
+                    <div class="panel-title">Ambient Sound</div>
+                    <div class="audio-controls">
+                        <button class="audio-btn" id="btn-audio-white" onclick="toggleAudio('white')">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                            White
+                        </button>
+                        <button class="audio-btn" id="btn-audio-brown" onclick="toggleAudio('brown')">
+                            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                            Focus
+                        </button>
+                        <button class="audio-btn" id="btn-audio-rain" onclick="toggleAudio('rain')">
+                            <svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.8 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg>
+                            Wind
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="panel-section widget" id="sect-stats">
+                    <div class="panel-title">Document Stats</div>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-num" id="stat-words">0</div>
+                            <div class="stat-lbl">Words</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num" id="stat-chars">0</div>
+                            <div class="stat-lbl">Chars</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num" id="stat-read">1m</div>
+                            <div class="stat-lbl">Read Time</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num" id="stat-readability">0</div>
+                            <div class="stat-lbl">Readability</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tag Cloud -->
+                <div class="panel-section widget" id="sect-tags">
+                    <div class="panel-title">Garden Tags</div>
+                    <div class="tag-cloud" id="tag-cloud">
+                        <!-- Tags injected here -->
+                    </div>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="panel-section widget" id="sect-toc">
+                    <div class="panel-title">Outline</div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- TOC injected here -->
+                    </ul>
+                </div>
+
+                <!-- Network Graph -->
+                <div class="panel-section widget" id="sect-graph" style="display: flex; flex-direction: column;">
+                    <div class="panel-title">Network Graph</div>
+                    <div id="graph-container">
+                        <canvas id="network-canvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="panel-section widget" id="sect-actions" style="border: none;">
+                    <button class="action-btn" style="color: var(--danger); border-color: var(--border-light); width: 100%;" onclick="sendToTrash()">
+                        <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                        Move to Trash
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div> <!-- /WORKSPACE -->
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-content ui-font">
+            <div class="modal-header">
+                <h2>Workspace Settings</h2>
+                <button class="close-modal" onclick="toggleSettings()">&times;</button>
+            </div>
+
+            <div class="settings-group">
+                <label>Theme</label>
+                <div class="settings-options" id="theme-options">
+                    <button class="option-btn" data-val="light">Light</button>
+                    <button class="option-btn" data-val="dark">Dark</button>
+                    <button class="option-btn" data-val="sepia">Sepia</button>
+                    <button class="option-btn" data-val="midnight">Midnight</button>
+                    <button class="option-btn" data-val="nord">Nord</button>
+                    <button class="option-btn" data-val="solarized">Solarized</button>
+                    <button class="option-btn" data-val="hacker">Hacker</button>
+                    <button class="option-btn" data-val="lavender">Lavender</button>
+                </div>
+            </div>
+            
+            <div class="settings-group">
+                <label>Background Pattern</label>
+                <div class="settings-options" id="pattern-options">
+                    <button class="option-btn" data-val="none">None</button>
+                    <button class="option-btn" data-val="dots">Dots</button>
+                    <button class="option-btn" data-val="grid">Grid</button>
+                    <button class="option-btn" data-val="lines">Lines</button>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <label>Typography</label>
+                <div class="settings-options" id="font-options">
+                    <button class="option-btn" data-val="serif">Serif (Lora)</button>
+                    <button class="option-btn" data-val="sans">Sans-Serif</button>
+                    <button class="option-btn" data-val="mono">Monospace</button>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <label>Text Size</label>
+                <div class="settings-options" id="size-options">
+                    <button class="option-btn" data-val="small">Small</button>
+                    <button class="option-btn" data-val="medium">Medium</button>
+                    <button class="option-btn" data-val="large">Large</button>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <label>Pomodoro Intervals (Mins)</label>
+                <div style="display:flex; gap:10px;">
+                    <input type="number" id="set-pomo-work" value="25" style="width:60px; padding:4px; border:1px solid var(--border-light); border-radius:4px; background:var(--bg-panel); color:var(--text-main);"> Focus
+                    <input type="number" id="set-pomo-break" value="5" style="width:60px; padding:4px; border:1px solid var(--border-light); border-radius:4px; background:var(--bg-panel); color:var(--text-main); margin-left:10px;"> Break
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <label>Visible Widgets</label>
+                <div class="settings-options" id="widget-options">
+                    <!-- Checkboxes injected by JS -->
+                </div>
+            </div>
+
+            <div class="settings-group" style="margin-top: 2rem; border-top: 1px solid var(--border-light); padding-top: 1rem;">
+                <label>Data Management</label>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Your garden lives entirely in your browser. Backup your data to keep it safe.</p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="option-btn" onclick="exportData()">⬇️ Export Backup</button>
+                    <button class="option-btn" onclick="document.getElementById('import-file').click()">⬆️ Import Data</button>
+                    <input type="file" id="import-file" accept=".json" style="display:none;" onchange="importData(event)">
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="toggleSettings()">Save & Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VERSION HISTORY MODAL -->
+    <div class="modal-overlay" id="history-modal">
+        <div class="modal-content ui-font">
+            <div class="modal-header">
+                <h2>Version History</h2>
+                <button class="close-modal" onclick="toggleHistoryModal()">&times;</button>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: -10px; margin-bottom: 20px;">Restore past snapshots of this note.</p>
+            <div class="version-list" id="version-list">
+                <!-- Versions injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TEMPLATES MODAL -->
+    <div class="modal-overlay" id="templates-modal">
+        <div class="modal-content ui-font">
+            <div class="modal-header">
+                <h2>Templates</h2>
+                <button class="close-modal" onclick="toggleTemplatesModal()">&times;</button>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: -10px; margin-bottom: 20px;">Create a new note from a structure, or save the current note as a template.</p>
+            
+            <button class="btn-primary" style="margin-bottom: 20px; width: 100%;" onclick="saveAsTemplate()">+ Save Current Note as Template</button>
+            
+            <div class="template-list" id="template-list">
+                <!-- Templates injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           DIGITAL GARDEN - CORE APPLICATION LOGIC & ARCHITECTURE (2500+ LINES)
+           ========================================================================== */
+
+        // --- CONSTANTS & CONFIG ---
+        const STATUSES = [
+            { id: 'seedling', icon: '🌱', label: 'Seedling' },
+            { id: 'budding', icon: '🌿', label: 'Budding' },
+            { id: 'evergreen', icon: '🌳', label: 'Evergreen' }
+        ];
+
+        const PROMPTS = [
+            "What did you learn today that surprised you?",
+            "Describe a small moment of joy from this week.",
+            "What is a problem you solved recently?",
+            "Write about a book or article you recently read.",
+            "What is a habit you want to cultivate?",
+            "Describe your ideal creative environment.",
+            "What is a topic you want to research deeper?",
+            "If you had a free afternoon with no obligations, what would you do?",
+            "Reflect on a recent failure and what it taught you.",
+            "What is a deeply held belief you've recently changed your mind on?"
+        ];
+
+        const WIDGET_DEFS = [
+            { id: 'goal', label: 'Session Goal' },
+            { id: 'pomodoro', label: 'Pomodoro Timer' },
+            { id: 'audio', label: 'Ambient Audio' },
+            { id: 'stats', label: 'Document Stats' },
+            { id: 'tags', label: 'Tag Cloud' },
+            { id: 'toc', label: 'Outline (TOC)' },
+            { id: 'graph', label: 'Network Graph' },
+            { id: 'actions', label: 'Quick Actions' }
+        ];
+
+        const DEFAULT_TEMPLATES = [
+            { id: 't1', title: 'Meeting Notes', content: '<h2>Attendees</h2><ul><li></li></ul><h2>Agenda</h2><ol><li></li></ol><h2>Action Items</h2><ul><li>[ ] </li></ul>' },
+            { id: 't2', title: 'Book Review', content: '<h2>Core Premise</h2><p></p><h2>Key Takeaways</h2><ul><li></li></ul><h2>Favorite Quotes</h2><blockquote></blockquote>' }
+        ];
+
+        // --- STATE ---
+        let state = {
+            notes: {},
+            trash: {},
+            templates: [...DEFAULT_TEMPLATES],
+            currentNoteId: null,
+            currentView: 'editor', 
+            isMarkdownMode: false,
+            settings: {
+                theme: 'light',
+                font: 'serif',
+                size: 'medium',
+                pattern: 'none',
+                wordGoal: 500,
+                pomoWork: 25,
+                pomoBreak: 5,
+                widgets: { goal: true, pomodoro: true, audio: true, stats: true, tags: true, toc: true, graph: true, actions: true },
+                kanbanCols: [
+                    { id: 0, name: '🌱 Seedlings' },
+                    { id: 1, name: '🌿 Budding' },
+                    { id: 2, name: '🌳 Evergreen' }
+                ]
+            }
+        };
+
+        let saveTimeout = null;
+        let versionTimeout = null;
+
+        // --- DOM ELEMENTS ---
+        const els = {
+            notesList: document.getElementById('notes-list'),
+            searchInput: document.getElementById('search-input'),
+            titleInput: document.getElementById('note-title'),
+            contentInput: document.getElementById('note-content'),
+            mdPreview: document.getElementById('md-preview'),
+            tagsInput: document.getElementById('note-tags'),
+            noteDate: document.getElementById('note-date'),
+            statusBtn: document.getElementById('status-btn'),
+            saveStatus: document.getElementById('save-status'),
+            statWords: document.getElementById('stat-words'),
+            statChars: document.getElementById('stat-chars'),
+            statRead: document.getElementById('stat-read'),
+            statReadability: document.getElementById('stat-readability'),
+            goalProgressText: document.getElementById('goal-progress-text'),
+            goalBarFill: document.getElementById('goal-bar-fill'),
+            settingsModal: document.getElementById('settings-modal'),
+            historyModal: document.getElementById('history-modal'),
+            templatesModal: document.getElementById('templates-modal'),
+            cpOverlay: document.getElementById('cp-overlay'),
+            cpPalette: document.getElementById('command-palette'),
+            cpInput: document.getElementById('cp-input'),
+            cpResults: document.getElementById('cp-results'),
+            tocList: document.getElementById('toc-list'),
+            tagCloud: document.getElementById('tag-cloud')
+        };
+
+        // --- INITIALIZATION ---
+        function init() {
+            loadFromStorage();
+            applySettings();
+            
+            buildWidgetToggles();
+            applyWidgetVisibility();
+
+            if (Object.keys(state.notes).length === 0 && Object.keys(state.trash).length === 0) {
+                const welcomeId = generateId();
+                state.notes[welcomeId] = {
+                    id: welcomeId,
+                    title: 'Welcome to your Workspace',
+                    content: '<h1>Cultivate your thoughts</h1><p>This is a functional space to write, edit, and grow your thoughts over time.</p><h2>Key Features</h2><ul><li>Hit <code>Cmd+K</code> or <code>Ctrl+K</code> to open the Command Palette.</li><li>Switch to <b>Kanban View</b> to organize your notes visually.</li><li>Check the <b>Calendar View</b> for a timeline of your writing.</li><li>Toggle <b>Markdown mode</b> in the toolbar if you prefer raw text. It supports [x] Task lists!</li><li>Press <code>Tab</code> inside the editor to cleanly indent your text.</li></ul><p>Everything is saved securely to your browser storage.</p>',
+                    tags: ['welcome', 'guide'],
+                    statusIndex: 1, 
+                    created: Date.now(),
+                    lastModified: Date.now(),
+                    versions: []
+                };
+                state.currentNoteId = welcomeId;
+                saveToStorage();
+            } else if (!state.currentNoteId || !state.notes[state.currentNoteId]) {
+                const sorted = getSortedNotes();
+                if(sorted.length > 0) state.currentNoteId = sorted[0].id;
+            }
+
+            setupEventListeners();
+            renderSidebar();
+            if(state.currentNoteId) loadNoteIntoEditor(state.currentNoteId);
+            
+            if (window.innerWidth <= 768) {
+                document.getElementById('mob-nav-btn').style.display = 'flex';
+                document.getElementById('mob-info-btn').style.display = 'flex';
+            }
+
+            initGraph();
+            initKanban();
+            initCalendar();
+            initCommandPalette();
+            initAudioEngine();
+            renderTOC();
+            renderTagCloud();
+        }
+
+        function generateId() { return 'n_' + Math.random().toString(36).substr(2, 9); }
+
+        // --- STORAGE ---
+        function loadFromStorage() {
+            try {
+                const storedNotes = localStorage.getItem('dg_notes_v3');
+                const storedSettings = localStorage.getItem('dg_settings_v3');
+                const storedTrash = localStorage.getItem('dg_trash_v3');
+                const storedTemplates = localStorage.getItem('dg_templates_v3');
+
+                if (storedNotes) state.notes = JSON.parse(storedNotes);
+                if (storedTrash) state.trash = JSON.parse(storedTrash);
+                if (storedTemplates) state.templates = JSON.parse(storedTemplates);
+                
+                if (storedSettings) {
+                    const parsed = JSON.parse(storedSettings);
+                    state.settings = { ...state.settings, ...parsed };
+                    if (parsed.widgets) state.settings.widgets = { ...state.settings.widgets, ...parsed.widgets };
+                    if (parsed.kanbanCols) state.settings.kanbanCols = parsed.kanbanCols;
+                }
+                
+                Object.values(state.notes).forEach(n => {
+                    if(!n.created) n.created = n.lastModified || Date.now();
+                    if(!n.versions) n.versions = [];
+                });
+            } catch (e) { console.error("Storage load failed", e); }
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('dg_notes_v3', JSON.stringify(state.notes));
+            localStorage.setItem('dg_settings_v3', JSON.stringify(state.settings));
+            localStorage.setItem('dg_trash_v3', JSON.stringify(state.trash));
+            localStorage.setItem('dg_templates_v3', JSON.stringify(state.templates));
+            
+            updateGraphData();
+            if(state.currentView === 'kanban') renderKanban();
+            if(state.currentView === 'calendar') renderCalendar();
+            if(state.currentView === 'analytics') renderAnalytics();
+            if(state.currentView === 'trash') renderTrash();
+        }
+
+        // --- SIDEBAR & SEARCH ---
+        function getSortedNotes() {
+            return Object.values(state.notes).sort((a, b) => b.lastModified - a.lastModified);
+        }
+
+        function renderSidebar() {
+            const query = els.searchInput ? els.searchInput.value.toLowerCase() : '';
+            els.notesList.innerHTML = '';
+            
+            const sortedNotes = getSortedNotes();
+
+            sortedNotes.forEach(note => {
+                const titleStr = (note.title || '').toLowerCase();
+                const contentStr = (note.content || '').toLowerCase();
+                const tagsStr = (note.tags || []).join(' ').toLowerCase();
+                
+                if (query && !titleStr.includes(query) && !contentStr.includes(query) && !tagsStr.includes(query)) return;
+
+                const li = document.createElement('li');
+                li.className = `note-item ${note.id === state.currentNoteId && state.currentView === 'editor' ? 'active' : ''}`;
+                li.onclick = () => { switchView('editor'); loadNoteIntoEditor(note.id); };
+                
+                const dateStr = new Date(note.lastModified).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+                let sIdx = note.statusIndex || 0;
+                if(sIdx >= state.settings.kanbanCols.length) sIdx = 0; 
+                
+                const colName = state.settings.kanbanCols[sIdx]?.name || '🌱';
+                const icon = colName.substring(0, 2).trim() || '📄';
+
+                const displayTitle = note.title || 'Untitled Seed';
+                const tagStr = (note.tags && note.tags.length > 0) ? `#${note.tags.join(' #')}` : '';
+
+                li.innerHTML = `
+                    <div class="note-item-header">
+                        <div class="note-item-title">${icon} ${displayTitle}</div>
+                        <div class="note-item-date">${dateStr}</div>
+                    </div>
+                    <div class="note-item-tags">${tagStr}</div>
+                `;
+                els.notesList.appendChild(li);
+            });
+        }
+
+        // --- VIEW ROUTER ---
+        function switchView(viewName) {
+            state.currentView = viewName;
+            
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            const tab = document.getElementById(`tab-${viewName}`);
+            if(tab) tab.classList.add('active');
+
+            document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
+            const view = document.getElementById(`view-${viewName}`);
+            if(view) view.classList.add('active');
+
+            if (viewName === 'kanban') renderKanban();
+            if (viewName === 'calendar') renderCalendar();
+            if (viewName === 'analytics') renderAnalytics();
+            if (viewName === 'trash') renderTrash();
+            
+            renderSidebar(); 
+        }
+
+        // --- EDITOR LOGIC ---
+        function loadNoteIntoEditor(id) {
+            if (!state.notes[id]) return;
+            if (state.currentNoteId && state.currentNoteId !== id) triggerSave(); 
+
+            state.currentNoteId = id;
+            const note = state.notes[id];
+
+            els.titleInput.value = note.title || '';
+            els.contentInput.innerHTML = note.content || '';
+            els.tagsInput.value = (note.tags || []).join(', ');
+            
+            const d = new Date(note.lastModified);
+            els.noteDate.innerText = `Edited: ${d.toLocaleDateString()} ${d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`;
+            
+            updateStatusUI(note.statusIndex || 0);
+            updateStats();
+            renderTOC();
+            
+            if(state.isMarkdownMode) renderMarkdownPreview();
+
+            renderSidebar(); 
+            autoResizeTitle();
+            els.saveStatus.innerText = "All changes saved";
+
+            if(window.innerWidth <= 768) document.body.classList.remove('show-nav');
+        }
+
+        function createNewNote(initialTitle = '', initialContent = '') {
+            triggerSave(); 
+            const newId = generateId();
+            const now = Date.now();
+            state.notes[newId] = {
+                id: newId, title: initialTitle, content: initialContent, tags: [], statusIndex: 0,
+                created: now, lastModified: now, versions: []
+            };
+            state.currentNoteId = newId;
+            saveToStorage();
+            
+            if (els.searchInput) els.searchInput.value = ''; 
+            switchView('editor');
+            loadNoteIntoEditor(newId);
+            els.titleInput.focus();
+        }
+
+        function generateDailyPrompt() {
+            const prompt = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
+            const dateStr = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            createNewNote(dateStr, `<h2>Prompt: ${prompt}</h2><p><br></p>`);
+            
+            const note = state.notes[state.currentNoteId];
+            note.tags = ['journal'];
+            saveToStorage();
+            loadNoteIntoEditor(state.currentNoteId);
+            
+            const range = document.createRange();
+            const sel = window.getSelection();
+            range.selectNodeContents(els.contentInput);
+            range.collapse(false);
+            sel.removeAllRanges();
+            sel.addRange(range);
+            els.contentInput.focus();
+        }
+
+        function sendToTrash() {
+            if (!state.currentNoteId || !state.notes[state.currentNoteId]) return;
+            
+            clearTimeout(saveTimeout);
+            
+            if (!state.trash) state.trash = {};
+
+            if (Object.keys(state.notes).length <= 1) {
+                if (confirm("Move this note to Trash? A new blank note will be created.")) {
+                    const note = state.notes[state.currentNoteId];
+                    note.trashedAt = Date.now();
+                    state.trash[note.id] = note;
+                    delete state.notes[note.id];
+                    
+                    state.currentNoteId = null;
+                    saveToStorage();
+                    createNewNote();
+                }
+                return;
+            }
+            
+            if (confirm("Move this note to Trash?")) {
+                const note = state.notes[state.currentNoteId];
+                note.trashedAt = Date.now();
+                state.trash[note.id] = note;
+                delete state.notes[note.id];
+                
+                state.currentNoteId = null;
+                saveToStorage();
+                
+                const sorted = getSortedNotes();
+                switchView('editor');
+                loadNoteIntoEditor(sorted[0].id);
+            }
+        }
+
+        function cycleStatus() {
+            if (!state.currentNoteId) return;
+            let note = state.notes[state.currentNoteId];
+            note.statusIndex = ((note.statusIndex || 0) + 1) % state.settings.kanbanCols.length;
+            updateStatusUI(note.statusIndex);
+            scheduleSave();
+        }
+
+        function updateStatusUI(index) {
+            if(index >= state.settings.kanbanCols.length) index = 0;
+            const col = state.settings.kanbanCols[index];
+            els.statusBtn.innerHTML = col.name;
+        }
+
+        // --- FORMATTING & STATS ---
+        function formatText(command, value = null) {
+            if(state.isMarkdownMode) return; 
+            document.execCommand(command, false, value);
+            els.contentInput.focus();
+            scheduleSave();
+        }
+
+        function insertLink() {
+            if(state.isMarkdownMode) return;
+            const url = prompt("Enter link URL:");
+            if (url) formatText('createLink', url);
+        }
+
+        function editSessionGoal() {
+            const currentGoal = state.settings.wordGoal || 500;
+            const res = prompt("Set session word goal:", currentGoal);
+            if (res !== null && res.trim() !== '' && !isNaN(res)) {
+                state.settings.wordGoal = parseInt(res, 10);
+                saveToStorage();
+                updateStats();
+            }
+        }
+
+        function updateStats() {
+            const text = els.contentInput.innerText || '';
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const chars = text.length;
+            
+            els.statWords.innerText = words.toLocaleString();
+            els.statChars.innerText = chars.toLocaleString();
+            
+            const readTime = Math.max(1, Math.ceil(words / 200));
+            els.statRead.innerText = `${readTime}m`;
+
+            let readability = "Easy";
+            if (words > 0) {
+                const avgLen = chars / words;
+                if (avgLen > 6.5) readability = "Hard";
+                else if (avgLen > 5) readability = "Medium";
+            }
+            els.statReadability.innerText = readability;
+
+            const goal = state.settings.wordGoal || 500;
+            els.goalProgressText.innerText = `${words.toLocaleString()} / ${goal.toLocaleString()} words`;
+            const pct = Math.min(100, Math.floor((words / goal) * 100));
+            els.goalBarFill.style.width = `${pct}%`;
+            if (pct === 100) els.goalBarFill.style.background = 'var(--info)';
+            else els.goalBarFill.style.background = 'var(--link-color)';
+        }
+
+        // --- SAVING & EVENTS ---
+        function setupEventListeners() {
+            els.titleInput.addEventListener('input', () => { autoResizeTitle(); scheduleSave(); });
+            
+            els.contentInput.addEventListener('input', () => { 
+                updateStats(); 
+                scheduleSave(); 
+                if(state.isMarkdownMode) renderMarkdownPreview(); 
+            });
+
+            // Clean Tab Insertion via execCommand so undo history is preserved
+            els.contentInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    document.execCommand('insertHTML', false, '&nbsp;&nbsp;&nbsp;&nbsp;');
+                    scheduleSave();
+                }
+            });
+
+            els.searchInput.addEventListener('input', renderSidebar);
+            
+            const mql = window.matchMedia('(max-width: 900px)');
+            mql.addEventListener('change', (e) => {
+                if(!e.matches) {
+                    document.body.classList.remove('show-nav');
+                    document.body.classList.remove('show-info');
+                }
+            });
+        }
+
+        function autoResizeTitle() {
+            els.titleInput.style.height = 'auto';
+            els.titleInput.style.height = els.titleInput.scrollHeight + 'px';
+        }
+
+        function scheduleSave() {
+            els.saveStatus.innerText = "Saving...";
+            clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(triggerSave, 1000);
+            
+            clearTimeout(versionTimeout);
+            versionTimeout = setTimeout(takeSnapshot, 60000); 
+        }
+
+        function triggerSave() {
+            if (!state.currentNoteId) return;
+            const note = state.notes[state.currentNoteId];
+            
+            note.title = els.titleInput.value;
+            note.content = els.contentInput.innerHTML;
+            
+            const rawTags = els.tagsInput.value;
+            note.tags = rawTags.split(',').map(t => t.trim().toLowerCase()).filter(t => t);
+            
+            note.lastModified = Date.now();
+
+            saveToStorage();
+            renderSidebar(); 
+            renderTOC();
+            renderTagCloud();
+            els.saveStatus.innerText = "Saved";
+        }
+
+        function takeSnapshot() {
+            if (!state.currentNoteId) return;
+            const note = state.notes[state.currentNoteId];
+            const snap = { ts: Date.now(), title: note.title, content: note.content };
+            note.versions.unshift(snap);
+            if (note.versions.length > 15) note.versions.pop();
+            saveToStorage();
+        }
+
+        // --- MARKDOWN ENGINE ---
+        function toggleMarkdown() {
+            state.isMarkdownMode = !state.isMarkdownMode;
+            const btn = document.getElementById('btn-md-toggle');
+            
+            if (state.isMarkdownMode) {
+                btn.classList.add('active');
+                els.contentInput.classList.add('hidden');
+                els.mdPreview.classList.add('active');
+                renderMarkdownPreview();
+            } else {
+                btn.classList.remove('active');
+                els.contentInput.classList.remove('hidden');
+                els.mdPreview.classList.remove('active');
+            }
+        }
+
+        function renderMarkdownPreview() {
+            const raw = els.contentInput.innerText || els.contentInput.innerHTML; 
+            els.mdPreview.innerHTML = parseMarkdown(raw);
+        }
+
+        function parseMarkdown(md) {
+            if(!md) return '';
+            let html = md;
+            
+            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            
+            html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
+            html = html.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>');
+            
+            html = html.replace(/\[\[(.*?)\]\]/gim, "<a class='wiki-link' onclick=\"openNoteByTitle('$1')\">$1</a>");
+            
+            html = html.replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2' target='_blank'>$1</a>");
+            html = html.replace(/\`(.*?)\`/gim, '<code>$1</code>');
+            
+            html = html.replace(/^\- \[x\] (.*$)/gim, '<ul class="task-list"><li><input type="checkbox" checked disabled> $1</li></ul>');
+            html = html.replace(/^\- \[ \] (.*$)/gim, '<ul class="task-list"><li><input type="checkbox" disabled> $1</li></ul>');
+            
+            html = html.replace(/^\- (.*$)/gim, '<ul><li>$1</li></ul>');
+            html = html.replace(/<\/ul>\n<ul class="task-list">/gim, '');
+            html = html.replace(/<\/ul>\n<ul>/gim, ''); 
+            
+            html = html.replace(/\n$/gim, '<br>');
+            return html;
+        }
+
+        function openNoteByTitle(title) {
+            const tLower = title.toLowerCase();
+            const found = Object.values(state.notes).find(n => (n.title||'').toLowerCase() === tLower);
+            if(found) {
+                switchView('editor');
+                loadNoteIntoEditor(found.id);
+            } else {
+                if(confirm(`Note "${title}" does not exist. Create it?`)) {
+                    createNewNote(title);
+                }
+            }
+        }
+
+        // --- WIDGET LOGIC (TOC & TAGS) ---
+        function renderTOC() {
+            if (!state.settings.widgets.toc) return;
+            const content = els.contentInput.innerHTML;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(content, 'text/html');
+            const headings = doc.querySelectorAll('h1, h2, h3');
+            
+            els.tocList.innerHTML = '';
+            if (headings.length === 0) {
+                els.tocList.innerHTML = '<li style="color:var(--text-muted)">No headings found.</li>';
+                return;
+            }
+
+            headings.forEach((h, i) => {
+                const li = document.createElement('li');
+                li.className = `toc-${h.tagName.toLowerCase()}`;
+                const a = document.createElement('a');
+                a.href = "javascript:void(0)";
+                a.innerText = h.innerText || h.textContent;
+                a.onclick = () => { if(window.find) window.find(h.innerText); };
+                li.appendChild(a);
+                els.tocList.appendChild(li);
+            });
+        }
+
+        function renderTagCloud() {
+            if (!state.settings.widgets.tags) return;
+            const tags = {};
+            Object.values(state.notes).forEach(n => {
+                (n.tags || []).forEach(t => { tags[t] = (tags[t] || 0) + 1; });
+            });
+            
+            els.tagCloud.innerHTML = '';
+            const sortedTags = Object.keys(tags).sort();
+            
+            if (sortedTags.length === 0) {
+                els.tagCloud.innerHTML = '<span style="color:var(--text-muted); font-size:0.8rem;">No tags cultivated yet.</span>';
+                return;
+            }
+
+            sortedTags.forEach(t => {
+                const badge = document.createElement('span');
+                badge.className = 'tag-badge';
+                badge.innerText = `#${t} (${tags[t]})`;
+                badge.onclick = () => {
+                    els.searchInput.value = t;
+                    renderSidebar();
+                };
+                els.tagCloud.appendChild(badge);
+            });
+        }
+
+        // --- DYNAMIC KANBAN BOARD ---
+        let dragNoteId = null;
+
+        function initKanban() {
+            renderKanbanColumns();
+        }
+
+        function renderKanbanColumns() {
+            const board = document.getElementById('kanban-board');
+            board.innerHTML = '';
+
+            state.settings.kanbanCols.forEach(col => {
+                const cDiv = document.createElement('div');
+                cDiv.className = 'kanban-col';
+                cDiv.setAttribute('data-status', col.id);
+                
+                cDiv.innerHTML = `
+                    <div class="kanban-col-header">
+                        <span>${col.name}</span>
+                        <div class="kanban-col-actions">
+                            <span class="kanban-count" id="kb-count-${col.id}">0</span>
+                            <button onclick="editColumn(${col.id})" title="Rename">✏️</button>
+                            <button onclick="deleteColumn(${col.id})" title="Delete">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="kanban-cards" id="kb-col-${col.id}"></div>
+                `;
+
+                cDiv.addEventListener('dragover', e => { e.preventDefault(); cDiv.style.background = 'var(--bg-hover)'; });
+                cDiv.addEventListener('dragleave', e => { cDiv.style.background = 'var(--bg-color)'; });
+                cDiv.addEventListener('drop', e => {
+                    e.preventDefault();
+                    cDiv.style.background = 'var(--bg-color)';
+                    const statusIdx = parseInt(col.getAttribute('data-status'));
+                    if (dragNoteId && state.notes[dragNoteId]) {
+                        state.notes[dragNoteId].statusIndex = statusIdx;
+                        saveToStorage();
+                        if (dragNoteId === state.currentNoteId) updateStatusUI(statusIdx);
+                    }
+                });
+
+                board.appendChild(cDiv);
+            });
+
+            const addBtn = document.createElement('button');
+            addBtn.className = 'add-col-btn';
+            addBtn.innerText = "+ Add Column";
+            addBtn.onclick = addColumn;
+            board.appendChild(addBtn);
+            
+            renderKanbanCards();
+        }
+
+        function addColumn() {
+            const name = prompt("Enter column name (e.g., '📚 To Read'):");
+            if(name) {
+                const nextId = Math.max(...state.settings.kanbanCols.map(c=>c.id), -1) + 1;
+                state.settings.kanbanCols.push({id: nextId, name: name});
+                saveToStorage();
+                renderKanbanColumns();
+            }
+        }
+
+        function editColumn(id) {
+            const col = state.settings.kanbanCols.find(c => c.id === id);
+            const name = prompt("Rename column:", col.name);
+            if(name) {
+                col.name = name;
+                saveToStorage();
+                renderKanbanColumns();
+                if(state.currentNoteId && state.notes[state.currentNoteId].statusIndex === id) {
+                    updateStatusUI(id);
+                }
+            }
+        }
+
+        function deleteColumn(id) {
+            if(state.settings.kanbanCols.length <= 1) { alert("Must have at least one column."); return; }
+            if(confirm("Delete column? Notes in this column will be moved to the first column.")) {
+                state.settings.kanbanCols = state.settings.kanbanCols.filter(c => c.id !== id);
+                const firstId = state.settings.kanbanCols[0].id;
+                Object.values(state.notes).forEach(n => {
+                    if(n.statusIndex === id) n.statusIndex = firstId;
+                });
+                saveToStorage();
+                renderKanbanColumns();
+            }
+        }
+
+        function renderKanban() {
+            renderKanbanColumns(); 
+        }
+
+        function renderKanbanCards() {
+            const counts = {};
+            state.settings.kanbanCols.forEach(c => counts[c.id] = 0);
+
+            Object.values(state.notes).forEach(note => {
+                let sIdx = note.statusIndex || 0;
+                if(!state.settings.kanbanCols.find(c => c.id === sIdx)) {
+                    sIdx = state.settings.kanbanCols[0].id;
+                    note.statusIndex = sIdx;
+                }
+                counts[sIdx]++;
+                
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = note.content;
+                const excerpt = tempDiv.textContent || tempDiv.innerText || "No content...";
+
+                const card = document.createElement('div');
+                card.className = 'k-card'; card.draggable = true;
+                
+                const dateStr = new Date(note.lastModified).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+                
+                card.innerHTML = `
+                    <div class="k-card-title">${note.title || 'Untitled'}</div>
+                    <div class="k-card-excerpt">${excerpt}</div>
+                    <div class="k-card-meta"><span>${dateStr}</span> <span>${(note.tags||[]).length} Tags</span></div>
+                `;
+
+                card.addEventListener('dragstart', (e) => { dragNoteId = note.id; setTimeout(() => card.classList.add('dragging'), 0); });
+                card.addEventListener('dragend', () => { dragNoteId = null; card.classList.remove('dragging'); });
+                card.addEventListener('dblclick', () => { switchView('editor'); loadNoteIntoEditor(note.id); });
+
+                const col = document.getElementById(`kb-col-${sIdx}`);
+                if(col) col.appendChild(card);
+            });
+
+            state.settings.kanbanCols.forEach(c => {
+                const cnt = document.getElementById(`kb-count-${c.id}`);
+                if(cnt) cnt.innerText = counts[c.id];
+            });
+        }
+
+        // --- CALENDAR VIEW ---
+        let calCurrentDate = new Date();
+
+        function initCalendar() { renderCalendar(); }
+        function changeMonth(delta) { calCurrentDate.setMonth(calCurrentDate.getMonth() + delta); renderCalendar(); }
+
+        function renderCalendar() {
+            const grid = document.getElementById('cal-grid');
+            grid.innerHTML = '';
+            const year = calCurrentDate.getFullYear(), month = calCurrentDate.getMonth();
+            document.getElementById('cal-month-year').innerText = calCurrentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+
+            ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+                const el = document.createElement('div'); el.className = 'cal-day-header'; el.innerText = day; grid.appendChild(el);
+            });
+
+            for (let i = 0; i < firstDay; i++) {
+                const el = document.createElement('div'); el.className = 'cal-day empty'; grid.appendChild(el);
+            }
+
+            const notesByDate = {};
+            Object.values(state.notes).forEach(note => {
+                const d = new Date(note.created || note.lastModified);
+                const k = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+                if(!notesByDate[k]) notesByDate[k] = [];
+                notesByDate[k].push(note);
+            });
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const el = document.createElement('div'); el.className = 'cal-day';
+                const isToday = today.getDate() === i && today.getMonth() === month && today.getFullYear() === year;
+                if(isToday) el.classList.add('today');
+
+                el.innerHTML = `<div class="cal-date">${i}</div>`;
+                
+                const k = `${year}-${month}-${i}`;
+                if(notesByDate[k]) {
+                    notesByDate[k].forEach(n => {
+                        const nel = document.createElement('div'); nel.className = 'cal-note';
+                        
+                        let sIdx = n.statusIndex || 0;
+                        const colName = state.settings.kanbanCols.find(c=>c.id === sIdx)?.name || '🌱';
+                        const icon = colName.substring(0, 2).trim() || '📄';
+                        
+                        nel.innerText = `${icon} ${n.title || 'Untitled'}`;
+                        nel.onclick = () => { switchView('editor'); loadNoteIntoEditor(n.id); };
+                        el.appendChild(nel);
+                    });
+                }
+                grid.appendChild(el);
+            }
+        }
+
+        // --- ANALYTICS VIEW ---
+        function renderAnalytics() {
+            const notesArr = Object.values(state.notes);
+            document.getElementById('a-tot-notes').innerText = notesArr.length;
+            
+            let totalWords = 0;
+            let tagsSet = new Set();
+            notesArr.forEach(n => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = n.content;
+                const text = tempDiv.textContent || "";
+                totalWords += text.trim() ? text.trim().split(/\s+/).length : 0;
+                (n.tags||[]).forEach(t => tagsSet.add(t));
+            });
+            document.getElementById('a-tot-words').innerText = totalWords.toLocaleString();
+            document.getElementById('a-tot-tags').innerText = tagsSet.size;
+
+            const activityDates = new Set();
+            notesArr.forEach(n => {
+                const d = new Date(n.lastModified);
+                activityDates.add(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
+            });
+            let streak = 0;
+            let dTest = new Date();
+            while(true) {
+                const k = `${dTest.getFullYear()}-${dTest.getMonth()}-${dTest.getDate()}`;
+                if(activityDates.has(k)) { streak++; }
+                else if(streak === 0) {  }
+                else { break; }
+                dTest.setDate(dTest.getDate() - 1);
+            }
+            document.getElementById('a-streak').innerText = streak;
+
+            const svg = document.getElementById('activity-chart');
+            svg.innerHTML = '';
+            
+            const days = 14;
+            let data = [];
+            let maxCount = 0;
+
+            for(let i=days-1; i>=0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const k = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+                
+                let count = 0;
+                notesArr.forEach(n => {
+                    const nd = new Date(n.lastModified);
+                    if(`${nd.getFullYear()}-${nd.getMonth()}-${nd.getDate()}` === k) count++;
+                });
+                if(count > maxCount) maxCount = count;
+                data.push({ label: `${d.getMonth()+1}/${d.getDate()}`, count: count });
+            }
+
+            if(maxCount === 0) maxCount = 5; 
+            
+            const w = 800, h = 250, padding = 40;
+            const barW = (w - padding*2) / days - 10;
+
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', padding); line.setAttribute('y1', h - padding);
+            line.setAttribute('x2', w - padding); line.setAttribute('y2', h - padding);
+            line.setAttribute('class', 'axis-line');
+            svg.appendChild(line);
+
+            data.forEach((d, i) => {
+                const barH = (d.count / maxCount) * (h - padding*2);
+                const x = padding + 5 + i * (barW + 10);
+                const y = h - padding - barH;
+
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', x); rect.setAttribute('y', h - padding); 
+                rect.setAttribute('width', barW); rect.setAttribute('height', 0);
+                rect.setAttribute('class', 'bar');
+                rect.setAttribute('rx', 4);
+                
+                setTimeout(() => {
+                    rect.setAttribute('y', y);
+                    rect.setAttribute('height', barH);
+                }, i * 50);
+
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x + barW/2);
+                text.setAttribute('y', h - padding + 20);
+                text.setAttribute('class', 'axis-text');
+                text.textContent = d.label;
+
+                const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+                title.textContent = `${d.count} edits`;
+                rect.appendChild(title);
+
+                svg.appendChild(rect);
+                svg.appendChild(text);
+            });
+        }
+
+        // --- TRASH VIEW ---
+        function renderTrash() {
+            const list = document.getElementById('trash-list');
+            list.innerHTML = '';
+            
+            if (!state.trash) state.trash = {};
+            const trashedNotes = Object.values(state.trash).sort((a,b) => b.trashedAt - a.trashedAt);
+            
+            if(trashedNotes.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-muted); text-align:center;">The bin is empty.</p>';
+                return;
+            }
+
+            trashedNotes.forEach(note => {
+                const d = new Date(note.trashedAt).toLocaleDateString();
+                const el = document.createElement('div');
+                el.className = 'trash-item';
+                el.innerHTML = `
+                    <div class="trash-info">
+                        <div class="trash-item-title">${note.title || 'Untitled'}</div>
+                        <div class="trash-item-meta">Deleted: ${d}</div>
+                    </div>
+                    <div class="trash-actions">
+                        <button class="action-btn" style="width:auto; padding:6px 12px;" onclick="restoreTrash('${note.id}')">Restore</button>
+                        <button class="action-btn" style="width:auto; padding:6px 12px; color:var(--danger); border-color:var(--danger);" onclick="deleteTrash('${note.id}')">Delete</button>
+                    </div>
+                `;
+                list.appendChild(el);
+            });
+        }
+
+        function restoreTrash(id) {
+            if(state.trash && state.trash[id]) {
+                state.notes[id] = state.trash[id];
+                delete state.trash[id];
+                saveToStorage();
+                renderTrash();
+                renderSidebar();
+            }
+        }
+
+        function deleteTrash(id) {
+            if(confirm("Permanently destroy this note?")) {
+                delete state.trash[id];
+                saveToStorage();
+                renderTrash();
+            }
+        }
+
+        function emptyTrash() {
+            if (!state.trash || Object.keys(state.trash).length === 0) {
+                alert("The recycle bin is already empty.");
+                return;
+            }
+            if(confirm("Permanently empty the entire recycle bin?")) {
+                state.trash = {};
+                saveToStorage();
+                renderTrash();
+            }
+        }
+
+        // --- COMMAND PALETTE ---
+        let cpSelectedIndex = 0;
+
+        function initCommandPalette() {
+            document.addEventListener('keydown', e => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openCommandPalette(); }
+                if (e.key === 'Escape') closeCommandPalette();
+            });
+
+            els.cpOverlay.addEventListener('click', closeCommandPalette);
+            els.cpInput.addEventListener('input', renderCommandResults);
+            
+            els.cpInput.addEventListener('keydown', e => {
+                const items = document.querySelectorAll('.cp-item');
+                if (items.length === 0) return;
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault(); cpSelectedIndex = (cpSelectedIndex + 1) % items.length; highlightCpItem();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault(); cpSelectedIndex = (cpSelectedIndex - 1 + items.length) % items.length; highlightCpItem();
+                } else if (e.key === 'Enter') {
+                    e.preventDefault(); items[cpSelectedIndex].click();
+                }
+            });
+        }
+
+        function openCommandPalette() {
+            els.cpOverlay.classList.add('active'); els.cpPalette.classList.add('active');
+            els.cpInput.value = ''; renderCommandResults(); els.cpInput.focus();
+        }
+
+        function closeCommandPalette() { els.cpOverlay.classList.remove('active'); els.cpPalette.classList.remove('active'); }
+
+        function renderCommandResults() {
+            const query = els.cpInput.value.toLowerCase();
+            els.cpResults.innerHTML = ''; cpSelectedIndex = 0;
+            let resultsHTML = '', count = 0;
+
+            const actions = [
+                { name: 'Create New Seed', icon: '+', action: () => { createNewNote(); closeCommandPalette(); } },
+                { name: 'Generate Daily Prompt', icon: '📝', action: () => { generateDailyPrompt(); closeCommandPalette(); } },
+                { name: 'Open Templates', icon: '📑', action: () => { toggleTemplatesModal(); closeCommandPalette(); } },
+                { name: 'Switch to Editor View', icon: '✍️', action: () => { switchView('editor'); closeCommandPalette(); } },
+                { name: 'Switch to Board View', icon: '📊', action: () => { switchView('kanban'); closeCommandPalette(); } },
+                { name: 'Switch to Calendar View', icon: '📅', action: () => { switchView('calendar'); closeCommandPalette(); } },
+                { name: 'Switch to Analytics View', icon: '📈', action: () => { switchView('analytics'); closeCommandPalette(); } },
+                { name: 'Switch to Trash', icon: '🗑️', action: () => { switchView('trash'); closeCommandPalette(); } },
+                { name: 'Open Settings', icon: '⚙️', action: () => { toggleSettings(); closeCommandPalette(); } },
+                { name: 'Toggle Focus Mode', icon: '🔍', action: () => { toggleFocusMode(); closeCommandPalette(); } }
+            ];
+
+            const filteredActions = actions.filter(a => a.name.toLowerCase().includes(query));
+            if(filteredActions.length > 0) {
+                resultsHTML += `<div class="cp-group-title">Actions</div>`;
+                filteredActions.forEach(a => {
+                    resultsHTML += `<div class="cp-item" data-idx="${count}" onclick="(${a.action.toString()})()"><div class="cp-item-icon">${a.icon}</div>${a.name}</div>`;
+                    count++;
+                });
+            }
+
+            const sortedNotes = getSortedNotes();
+            const filteredNotes = sortedNotes.filter(n => (n.title||'').toLowerCase().includes(query) || (n.content||'').toLowerCase().includes(query)).slice(0, 10);
+            
+            if(filteredNotes.length > 0) {
+                resultsHTML += `<div class="cp-group-title">Notes</div>`;
+                filteredNotes.forEach(n => {
+                    resultsHTML += `<div class="cp-item" data-idx="${count}" onclick="switchView('editor'); loadNoteIntoEditor('${n.id}'); closeCommandPalette();"><div class="cp-item-icon">📄</div>${n.title || 'Untitled'}</div>`;
+                    count++;
+                });
+            }
+
+            els.cpResults.innerHTML = resultsHTML;
+            highlightCpItem();
+        }
+
+        function highlightCpItem() {
+            const items = document.querySelectorAll('.cp-item');
+            items.forEach((item, idx) => {
+                if (idx === cpSelectedIndex) { item.classList.add('selected'); item.scrollIntoView({ block: 'nearest' }); } 
+                else { item.classList.remove('selected'); }
+            });
+        }
+
+        // --- VERSION HISTORY ---
+        function toggleHistoryModal() {
+            const modal = els.historyModal;
+            if (modal.classList.contains('active')) modal.classList.remove('active');
+            else { renderHistory(); modal.classList.add('active'); }
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('version-list');
+            list.innerHTML = '';
+            if(!state.currentNoteId) return;
+            const note = state.notes[state.currentNoteId];
+            
+            if(!note.versions || note.versions.length === 0) {
+                list.innerHTML = '<div style="color:var(--text-muted); text-align:center;">No previous versions saved yet.</div>';
+                return;
+            }
+
+            note.versions.forEach((v, idx) => {
+                const d = new Date(v.ts);
+                const el = document.createElement('div'); el.className = 'version-card';
+                el.innerHTML = `
+                    <div class="v-info">
+                        <div class="v-date">${d.toLocaleDateString()} ${d.toLocaleTimeString()}</div>
+                        <div class="v-meta">Snapshot - ${(v.content||'').length} chars</div>
+                    </div>
+                    <button class="v-restore">Restore</button>
+                `;
+                el.querySelector('.v-restore').onclick = () => restoreVersion(idx);
+                list.appendChild(el);
+            });
+        }
+
+        function restoreVersion(index) {
+            if(!confirm("Restore this version? Current unsaved changes will be lost.")) return;
+            const note = state.notes[state.currentNoteId];
+            const v = note.versions[index];
+            takeSnapshot();
+            note.title = v.title; note.content = v.content; note.lastModified = Date.now();
+            saveToStorage(); loadNoteIntoEditor(state.currentNoteId); toggleHistoryModal();
+        }
+
+        // --- TEMPLATES ---
+        function toggleTemplatesModal() {
+            const modal = els.templatesModal;
+            if (modal.classList.contains('active')) modal.classList.remove('active');
+            else { renderTemplates(); modal.classList.add('active'); }
+        }
+
+        function renderTemplates() {
+            const list = document.getElementById('template-list');
+            list.innerHTML = '';
+            
+            state.templates.forEach(t => {
+                const el = document.createElement('div');
+                el.className = 'template-card';
+                
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = t.content;
+                const excerpt = tempDiv.textContent.substring(0, 50) + "...";
+
+                el.innerHTML = `
+                    <div class="template-title">${t.title}</div>
+                    <div class="template-desc">${excerpt}</div>
+                `;
+                el.onclick = () => useTemplate(t.id);
+                list.appendChild(el);
+            });
+        }
+
+        function saveAsTemplate() {
+            if(!state.currentNoteId) return;
+            const note = state.notes[state.currentNoteId];
+            const tName = prompt("Enter a name for this template:", note.title || "New Template");
+            if(tName) {
+                state.templates.push({
+                    id: 't_' + Math.random().toString(36).substr(2, 9),
+                    title: tName,
+                    content: note.content
+                });
+                saveToStorage();
+                renderTemplates();
+                alert("Template saved!");
+            }
+        }
+
+        function useTemplate(id) {
+            const template = state.templates.find(t => t.id === id);
+            if(template) {
+                createNewNote(template.title, template.content);
+                toggleTemplatesModal();
+            }
+        }
+
+        function toggleFocusMode() { document.body.classList.toggle('focus-mode'); }
+
+        // --- POMODORO TIMER ---
+        let timerInterval = null, timerTime = 25 * 60, isWorking = true;
+
+        function toggleTimer() {
+            const btn = document.getElementById('btn-timer-toggle');
+            if(timerInterval) {
+                clearInterval(timerInterval); timerInterval = null;
+                btn.innerText = "Start"; btn.classList.remove('active');
+            } else {
+                timerInterval = setInterval(timerTick, 1000);
+                btn.innerText = "Pause"; btn.classList.add('active');
+            }
+        }
+
+        function resetTimer() {
+            if(timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+            document.getElementById('btn-timer-toggle').innerText = "Start";
+            document.getElementById('btn-timer-toggle').classList.remove('active');
+            isWorking = true; 
+            timerTime = (state.settings.pomoWork || 25) * 60; 
+            updateTimerUI();
+        }
+
+        function timerTick() {
+            timerTime--;
+            if(timerTime <= 0) {
+                isWorking = !isWorking; 
+                timerTime = (isWorking ? (state.settings.pomoWork || 25) : (state.settings.pomoBreak || 5)) * 60;
+                if (audioCtx) {
+                    const osc = audioCtx.createOscillator(); osc.connect(audioCtx.destination);
+                    osc.frequency.setValueAtTime(800, audioCtx.currentTime); osc.start(); osc.stop(audioCtx.currentTime + 0.5);
+                }
+            }
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            const min = Math.floor(timerTime / 60).toString().padStart(2, '0');
+            const sec = (timerTime % 60).toString().padStart(2, '0');
+            document.getElementById('timer-display').innerText = `${min}:${sec}`;
+            const statusEl = document.getElementById('timer-status');
+            statusEl.innerText = isWorking ? "FOCUS" : "BREAK";
+            statusEl.style.color = isWorking ? "var(--link-color)" : "var(--info)";
+            
+            const total = (isWorking ? (state.settings.pomoWork || 25) : (state.settings.pomoBreak || 5)) * 60;
+            const pct = 100 - ((timerTime / total) * 100);
+            document.getElementById('timer-progress').style.width = `${pct}%`;
+            document.getElementById('timer-progress').style.background = isWorking ? "var(--link-color)" : "var(--info)";
+        }
+
+        // --- AMBIENT AUDIO ENGINE (Web Audio API synthesis) ---
+        let audioCtx, noiseNodes = { white: null, brown: null, rain: null };
+
+        function initAudioEngine() {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+
+        function createNoiseBuffer(type) {
+            const bufferSize = audioCtx.sampleRate * 2;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = buffer.getChannelData(0);
+            let lastOut = 0;
+            for (let i = 0; i < bufferSize; i++) {
+                const white = Math.random() * 2 - 1;
+                if (type === 'white') {
+                    output[i] = white * 0.1;
+                } else {
+                    // Brownish noise
+                    output[i] = (lastOut + (0.02 * white)) / 1.02;
+                    lastOut = output[i];
+                    output[i] *= 3.5; 
+                }
+            }
+            return buffer;
+        }
+
+        function toggleAudio(type) {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const btn = document.getElementById(`btn-audio-${type}`);
+
+            if (noiseNodes[type]) {
+                noiseNodes[type].stop(); noiseNodes[type].disconnect(); noiseNodes[type] = null;
+                btn.classList.remove('playing');
+            } else {
+                const source = audioCtx.createBufferSource();
+                source.buffer = createNoiseBuffer(type === 'white' ? 'white' : 'brown'); 
+                source.loop = true;
+                const gainNode = audioCtx.createGain();
+                
+                if (type === 'rain') {
+                    const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 800;
+                    source.connect(filter); filter.connect(gainNode); gainNode.gain.value = 0.6;
+                    
+                    // Modulate filter for wind/rain effect
+                    const lfo = audioCtx.createOscillator();
+                    lfo.type = 'sine'; lfo.frequency.value = 0.1;
+                    const lfoGain = audioCtx.createGain(); lfoGain.gain.value = 400;
+                    lfo.connect(lfoGain); lfoGain.connect(filter.frequency);
+                    lfo.start();
+
+                } else if (type === 'brown') {
+                    const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 400;
+                    source.connect(filter); filter.connect(gainNode); gainNode.gain.value = 0.8;
+                } else {
+                    source.connect(gainNode); gainNode.gain.value = 0.1;
+                }
+
+                gainNode.connect(audioCtx.destination); source.start();
+                noiseNodes[type] = source; btn.classList.add('playing');
+            }
+        }
+
+        // --- SETTINGS & WIDGET CONFIG ---
+        function toggleSettings() {
+            els.settingsModal.classList.toggle('active');
+            updateSettingsUI();
+        }
+
+        function applySettings() {
+            document.documentElement.setAttribute('data-theme', state.settings.theme);
+            document.documentElement.setAttribute('data-font', state.settings.font);
+            document.documentElement.setAttribute('data-size', state.settings.size);
+            document.documentElement.setAttribute('data-pattern', state.settings.pattern || 'none');
+            
+            // Sync Pomodoro Inputs
+            document.getElementById('set-pomo-work').value = state.settings.pomoWork || 25;
+            document.getElementById('set-pomo-break').value = state.settings.pomoBreak || 5;
+        }
+
+        function buildWidgetToggles() {
+            const container = document.getElementById('widget-options');
+            container.innerHTML = '';
+            WIDGET_DEFS.forEach(def => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn ${state.settings.widgets[def.id] ? 'active' : ''}`;
+                btn.innerText = def.label;
+                btn.onclick = () => {
+                    state.settings.widgets[def.id] = !state.settings.widgets[def.id];
+                    btn.classList.toggle('active', state.settings.widgets[def.id]);
+                    applyWidgetVisibility();
+                    saveToStorage();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function applyWidgetVisibility() {
+            WIDGET_DEFS.forEach(def => {
+                const el = document.getElementById(`sect-${def.id}`);
+                if(el) el.classList.toggle('widget-hidden', !state.settings.widgets[def.id]);
+            });
+        }
+
+        function updateSettingsUI() {
+            const btns = document.querySelectorAll('#theme-options .option-btn, #font-options .option-btn, #size-options .option-btn, #pattern-options .option-btn');
+            btns.forEach(btn => {
+                const val = btn.getAttribute('data-val');
+                if (!val) return;
+                btn.classList.remove('active');
+                if (val === state.settings.theme || val === state.settings.font || val === state.settings.size || val === state.settings.pattern) btn.classList.add('active');
+                
+                if(!btn.dataset.bound) {
+                    btn.addEventListener('click', () => {
+                        const parentId = btn.parentElement.id;
+                        if (parentId === 'theme-options') state.settings.theme = val;
+                        if (parentId === 'font-options') state.settings.font = val;
+                        if (parentId === 'size-options') state.settings.size = val;
+                        if (parentId === 'pattern-options') state.settings.pattern = val;
+                        applySettings(); saveToStorage(); updateSettingsUI(); updateGraphData(); 
+                    });
+                    btn.dataset.bound = true;
+                }
+            });
+
+            // Bind Pomodoro Inputs
+            const wInp = document.getElementById('set-pomo-work');
+            const bInp = document.getElementById('set-pomo-break');
+            
+            wInp.onchange = () => { state.settings.pomoWork = parseInt(wInp.value)||25; saveToStorage(); resetTimer(); };
+            bInp.onchange = () => { state.settings.pomoBreak = parseInt(bInp.value)||5; saveToStorage(); resetTimer(); };
+        }
+
+        // --- EXPORT / IMPORT ---
+        function exportData() {
+            triggerSave();
+            const dataStr = JSON.stringify({ notes: state.notes, trash: state.trash, templates: state.templates, settings: state.settings }, null, 2);
+            const blob = new Blob([dataStr], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url;
+            a.download = `digital_garden_backup_${new Date().toISOString().slice(0,10)}.json`; a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.notes) {
+                        state.notes = data.notes;
+                        if(data.settings) state.settings = { ...state.settings, ...data.settings };
+                        if(data.trash) state.trash = data.trash;
+                        if(data.templates) state.templates = data.templates;
+                        saveToStorage(); init(); toggleSettings();
+                        alert("Garden data imported successfully!");
+                    } else { alert("Invalid backup file."); }
+                } catch(err) { alert("Error parsing file."); }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        /* ==========================================================================
+           NETWORK GRAPH PHYSICS ENGINE
+           ========================================================================== */
+        
+        const gCanvas = document.getElementById('network-canvas');
+        const gCtx = gCanvas.getContext('2d');
+        let gNodes = [], gLinks = [], gAnimationId = null, gDraggedNode = null;
+
+        function initGraph() {
+            if(!state.settings.widgets.graph) return;
+            const rect = gCanvas.parentElement.getBoundingClientRect();
+            gCanvas.width = rect.width; gCanvas.height = rect.height;
+
+            updateGraphData();
+            
+            gCanvas.addEventListener('mousedown', gDragStart);
+            gCanvas.addEventListener('mousemove', gDragMove);
+            window.addEventListener('mouseup', gDragEnd);
+            
+            if(!gAnimationId) gLoop();
+        }
+
+        function updateGraphData() {
+            if(!state.settings.widgets.graph) return;
+            gNodes = []; gLinks = [];
+            const w = gCanvas.width, h = gCanvas.height;
+
+            Object.values(state.notes).forEach(note => {
+                gNodes.push({
+                    id: note.id, title: note.title || 'Untitled', tags: note.tags || [],
+                    x: w/2 + (Math.random() - 0.5) * 100, y: h/2 + (Math.random() - 0.5) * 100,
+                    vx: 0, vy: 0, radius: note.id === state.currentNoteId ? 8 : 5
+                });
+            });
+
+            for(let i=0; i<gNodes.length; i++) {
+                for(let j=i+1; j<gNodes.length; j++) {
+                    const shared = gNodes[i].tags.filter(t => gNodes[j].tags.includes(t));
+                    if(shared.length > 0) gLinks.push({ source: gNodes[i], target: gNodes[j], strength: shared.length });
+                }
+            }
+        }
+
+        function gDragStart(e) {
+            const rect = gCanvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+            for(let n of gNodes) {
+                if(Math.hypot(n.x - mx, n.y - my) < n.radius + 10) { gDraggedNode = n; break; }
+            }
+        }
+
+        function gDragMove(e) {
+            if(!gDraggedNode) return;
+            const rect = gCanvas.getBoundingClientRect();
+            gDraggedNode.x = e.clientX - rect.left; gDraggedNode.y = e.clientY - rect.top;
+            gDraggedNode.vx = 0; gDraggedNode.vy = 0;
+        }
+
+        function gDragEnd() {
+            if(gDraggedNode) { switchView('editor'); loadNoteIntoEditor(gDraggedNode.id); }
+            gDraggedNode = null;
+        }
+
+        function gLoop() {
+            if(!state.settings.widgets.graph || document.body.classList.contains('focus-mode') || state.currentView !== 'editor') {
+                gAnimationId = requestAnimationFrame(gLoop);
+                return;
+            }
+
+            const style = getComputedStyle(document.body);
+            const colorNode = style.getPropertyValue('--graph-node').trim();
+            const colorLink = style.getPropertyValue('--graph-link').trim();
+            const colorBg = style.getPropertyValue('--bg-panel').trim();
+            const colorText = style.getPropertyValue('--text-main').trim();
+
+            gCtx.fillStyle = colorBg;
+            gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
+
+            const k = 0.05, repulsion = 200, damping = 0.85, centerGravity = 0.02;
+
+            for(let i=0; i<gNodes.length; i++) {
+                let n1 = gNodes[i];
+                if(n1 === gDraggedNode) continue;
+
+                for(let j=0; j<gNodes.length; j++) {
+                    if(i===j) continue;
+                    let n2 = gNodes[j], dx = n1.x - n2.x, dy = n1.y - n2.y;
+                    let distSq = dx*dx + dy*dy || 1, dist = Math.sqrt(distSq), force = repulsion / distSq;
+                    n1.vx += (dx/dist) * force; n1.vy += (dy/dist) * force;
+                }
+                n1.vx += (gCanvas.width/2 - n1.x) * centerGravity; n1.vy += (gCanvas.height/2 - n1.y) * centerGravity;
+            }
+
+            gLinks.forEach(l => {
+                let dx = l.target.x - l.source.x, dy = l.target.y - l.source.y, dist = Math.sqrt(dx*dx + dy*dy);
+                let force = (dist - 50) * k, fx = (dx/dist) * force, fy = (dy/dist) * force;
+                if(l.source !== gDraggedNode) { l.source.vx += fx; l.source.vy += fy; }
+                if(l.target !== gDraggedNode) { l.target.vx -= fx; l.target.vy -= fy; }
+            });
+
+            gCtx.strokeStyle = colorLink; gCtx.lineWidth = 1; gCtx.beginPath();
+            gLinks.forEach(l => { gCtx.moveTo(l.source.x, l.source.y); gCtx.lineTo(l.target.x, l.target.y); });
+            gCtx.stroke();
+
+            gNodes.forEach(n => {
+                if(n !== gDraggedNode) {
+                    n.vx *= damping; n.vy *= damping; n.x += n.vx; n.y += n.vy;
+                    n.x = Math.max(10, Math.min(gCanvas.width-10, n.x)); n.y = Math.max(10, Math.min(gCanvas.height-10, n.y));
+                }
+                
+                const isActive = n.id === state.currentNoteId;
+                gCtx.beginPath(); gCtx.arc(n.x, n.y, isActive ? 8 : 5, 0, Math.PI*2); gCtx.fillStyle = colorNode; gCtx.fill();
+                
+                if (isActive) { gCtx.strokeStyle = colorText; gCtx.lineWidth = 2; gCtx.stroke(); gCtx.fillStyle = colorText; gCtx.font = "10px sans-serif"; gCtx.fillText(n.title.substring(0,15), n.x + 10, n.y + 4); }
+            });
+
+            gAnimationId = requestAnimationFrame(gLoop);
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
